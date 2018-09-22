@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Requeriments</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<body class="skin-blue sidebar-mini sidebar-collapse" style="height: auto; min-height: 100%;">
+<div class="wrapper">
+  <header class="main-header">
+    <nav class="navbar navbar-static-top" style="margin-left: 0;">
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="dist/img/user.png" class="user-image" alt="User Image">
+              <span class="hidden-xs">Enrique Hurtado</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="dist/img/user.png" class="img-circle" alt="User Image">
+                <p>
+                  Enrique Hurtado
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="content-wrapper" style="margin-left: 0 !important;">
+    <section id="newSection" class="content" style="display: none;">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">New Requeriment</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <div role="form">
+              <div class="box-body">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="priorityInput">Priority</label>
+                    <input type="number" class="form-control" id="priorityInput" placeholder="Enter priority">
+                  </div>
+                  <div class="form-group">
+                    <label for="teamInput">Team</label>
+                    <input type="text" class="form-control" id="teamInput" placeholder="Enter Team">
+                  </div>
+                  <div class="form-group">
+                    <label>DeadLine</label>
+
+                    <div class="input-group date">
+                      <div class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                      <input type="text" class="form-control" id="deadLineInput">
+                    </div>
+                    <!-- /.input group -->
+                  </div>
+
+                  <div class="form-group">
+                    <label>Link</label>
+                    <div class="input-group">
+                      <input id="linkText" type="text" class="form-control" placeholder="Enter a Link" disabled="">
+                      <span class="input-group-btn">
+                      <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-default">new</button>
+                    </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="statusInput">Status</label>
+                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="statusInput">
+                      <option selected="selected">STANDBY</option>
+                      <option>PRODUCTION</option>
+                    </select>
+                  </div>
+
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="idInput">Id</label>
+                    <input type="text" class="form-control" id="idInput" placeholder="Enter id">
+                  </div>
+                  <div class="form-group">
+                    <label for="RequerimentInput">Feature / Requeriment</label>
+                    <input type="text" class="form-control" id="requerimentInput" placeholder="Enter Feature / Requeriment">
+                  </div>
+                  <div class="form-group">
+                    <label>Description</label>
+                    <textarea class="form-control" rows="5" id="descriptionInput" placeholder="Enter ..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="teamInput">Notify To Email</label>
+                    <input type="email" class="form-control" id="emailToNotify" placeholder="Enter a Email">
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+                <button class="btn btn-primary" onclick="onSave()">Save</button>
+                <button class="btn btn-default" onclick="cancelNewRequeriment()">cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-header">
+      <h1>
+        Post v3 Roadmap
+        <button id="newSectionButton" type="button" class="btn btn-block btn-primary pull-right" style="width: 10%;" onclick="showNewSection()">New</button>
+      </h1>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <!--<div class="box-header">-->
+              <!--<h3 class="box-title">Data Table With Full Features</h3>-->
+            <!--</div>-->
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Actions</th>
+                  <th>Priority</th>
+                  <!--<th></th>-->
+                  <th>Id</th>
+                  <!--<th></th>-->
+                  <th>Team</th>
+                  <!--<th></th>-->
+                  <th>Deadline</th>
+                  <!--<th></th>-->
+                  <th>Feature / Requeriment</th>
+                  <!--<th></th>-->
+                  <th>Description</th>
+                  <!--<th></th>-->
+                  <th>Link</th>
+                  <!--<th></th>-->
+                  <th>Status</th>
+                  <!--<th></th>-->
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+              </table>
+            </div>
+            <div class="overlay" style="display: none;">
+              <i class="fa fa-refresh fa-spin"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="content-header">
+      <h1>
+        To Approve
+      </h1>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>Actions</th>
+                  <th>Priority</th>
+                  <th>Id</th>
+                  <th>Team</th>
+                  <th>Deadline</th>
+                  <th>Feature / Requeriment</th>
+                  <th>Description</th>
+                  <th>Link</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody2">
+                </tbody>
+              </table>
+            </div>
+            <div class="overlay" style="display: none;">
+              <i class="fa fa-refresh fa-spin"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="control-sidebar-bg"></div>
+</div>
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Link</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Title</label>
+          <input id="titleLink" type="text" class="form-control" placeholder="Enter a Title Link">
+        </div>
+        <div class="form-group">
+          <label>Url</label>
+          <input id="urlLink" type="text" class="form-control" placeholder="Enter a Url">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="saveUrl()" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-delete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Delete</h4>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure that you want delete this item?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" onclick="cancelDelete()" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-danger" onclick="deleteRequeriment()" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="dist/js/demo.js"></script>
+<script>
+    let idToDelete = '';
+    let idToEdit = '';
+    let data = [];
+    let data2 = [];
+    let dataToEdit = {};
+    // let titleLink = '';
+    // let urlLink = '';
+
+    // function newCommentButton(id, priority) {
+    //     return '<a href="#">\n' +
+    //         '          <span class="badge bg-blue">add</span>\n' +
+    //         '          </a>';
+    // }
+    //
+    // function dataCommentButton(id, priority, CommentPriority) {
+    //     return '<a href="#">\n' +
+    //         '      <span class="badge bg-green">'+Math.floor((Math.random() * 10) + 1)+'</span>\n' +
+    //         '      </a> <br>' +
+    //         '<a href="#">\n' +
+    //         '      <span class="badge bg-blue">add</span>\n' +
+    //         '      </a>';
+    // }
+    //
+    // function printField(field, id, label, comment) {
+    //     return comment.length === 0 ? newCommentButton(id, label) : dataCommentButton(id, label, comment);
+    // }
+
+    function printBackgroundColor(status) {
+        return status !== 'PRODUCTION' ? 'style="background-color: #f9f9f9;"' : 'style="background-color: #63dea6;"';
+    }
+
+    function saveUrl() {
+        $('#linkText').val($('#titleLink').val());
+    }
+
+    function cleanFields() {
+        $('#titleLink').val('');
+        $('#urlLink').val('');
+        $('#linkText').val('');
+        $('#priorityInput').val('');
+        $('#teamInput').val('');
+        $('#idInput').val('');
+        $('#deadLineInput').val('');
+        $('#requerimentInput').val('');
+        $('#statusInput').val('STANDBY');
+        $('#descriptionInput').val('');
+    }
+
+    function showNewSection() {
+        $('#newSection').css('display','block' );
+        $('#newSectionButton').css('display','none' );
+
+        cleanFields();
+    }
+
+    function cancelNewRequeriment() {
+        $('#newSection').css('display','none' );
+        $('#newSectionButton').css('display','block' );
+
+        cleanFields();
+    }
+
+    function getCustomLink(title, url) {
+        return title.length === 0 ? '' : '<a target="_blank" href="'+url+'">'+title+'</a>';
+    }
+
+    function onSave() {
+        if (idToEdit !== '') {
+            editRequeriment();
+        }else{
+            createRequeriment();
+        }
+    }
+
+    function createRequeriment() {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "createRequeriment",
+                "priority": $('#priorityInput').val(),
+                "idRow": $('#idInput').val(),
+                "team": $('#teamInput').val(),
+                "deadLine": $('#deadLineInput').val(),
+                "feature": $('#requerimentInput').val(),
+                "description": $('#descriptionInput').val(),
+                "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
+                "statusRequeriment": $('#statusInput').val(),
+                "approved": 'false',
+                "orderRequeriment": '1'
+            },
+            success: function(response){
+                console.log(response);
+                cancelNewRequeriment();
+                getRequeriments();
+            }
+        });
+    }
+
+    function editRequeriment() {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "editRequeriment",
+                "id" : idToEdit,
+                "priority": $('#priorityInput').val(),
+                "idRow": $('#idInput').val(),
+                "team": $('#teamInput').val(),
+                "deadLine": $('#deadLineInput').val(),
+                "feature": $('#requerimentInput').val(),
+                "description": $('#descriptionInput').val(),
+                "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
+                "statusRequeriment": $('#statusInput').val(),
+                "approved": dataToEdit.approved,
+                "orderRequeriment": dataToEdit.orderRequeriment
+            },
+            success: function(response){
+                console.log(response);
+                idToEdit = '';
+                dataToEdit = {};
+                cancelNewRequeriment();
+                getRequeriments();
+            }
+        });
+    }
+
+    function editRequerimentCustom() {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "editRequeriment",
+                "id" : idToEdit,
+                "priority": dataToEdit.priority,
+                "idRow": dataToEdit.idRow,
+                "team": dataToEdit.team,
+                "deadLine": dataToEdit.deadLine,
+                "feature": dataToEdit.feature,
+                "description": dataToEdit.description,
+                "link": dataToEdit.link,
+                "statusRequeriment": dataToEdit.statusRequeriment,
+                "approved": dataToEdit.approved,
+                "orderRequeriment": dataToEdit.orderRequeriment
+            },
+            success: function(response){
+                console.log(response);
+                idToEdit = '';
+                dataToEdit = {};
+                cancelNewRequeriment();
+                getRequeriments();
+            }
+        });
+    }
+
+    function onEdit(id) {
+        idToEdit = id;
+
+        let d1 = data.filter(d => d.id === id.toString())[0];
+        console.log(d1);
+        showNewSection();
+        $('#titleLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
+        $('#urlLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].href);
+        $('#linkText').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
+        $('#priorityInput').val(d1.priority);
+        $('#teamInput').val(d1.team);
+        $('#idInput').val(d1.idRow);
+        $('#deadLineInput').val(d1.deadLine);
+        $('#requerimentInput').val(d1.feature);
+        $('#statusInput').val(d1.statusRequeriment);
+
+        $('#descriptionInput').val(d1.description.replace("<br/>", "<br/>\n"));
+        dataToEdit = d1;
+    }
+
+    function deleteRequeriment() {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "deleteRequeriment",
+                "id" :idToDelete,
+            },
+            success: function(response){
+                console.log(response);
+                getRequeriments();
+            }
+        });
+        // return console.log(idToDelete);
+    }
+
+    function setIdToDelete(id) {
+        idToDelete = id;
+    }
+
+    function cancelDelete() {
+        idToDelete = '';
+    }
+
+    function upRequeriment(id) {
+        let d1 = data.filter(d => d.id === id.toString())[0];
+        let d2 = data.filter(d => d.priority === d1.priority);
+        if(d2.indexOf(d1)-1 >= 0)  {
+            //change order in database
+            let d3 = d2[d2.indexOf(d1)-1];
+              //params to send
+            console.log(d1.id, d3.orderRequeriment);
+            console.log(d3.id, d1.orderRequeriment);
+
+            //refresh Data
+            let tmp = d1.orderRequeriment;
+            data.find(d => d.id === d1.id.toString()).orderRequeriment = d3.orderRequeriment;
+            data.find(d => d.id === d3.id.toString()).orderRequeriment = tmp;
+
+            console.log(data);
+
+            fillData(data);
+        }
+        console.log(id);
+    }
+
+    function downRequeriment(id) {
+        let d1 = data.filter(d => d.id === id.toString())[0];
+        let d2 = data.filter(d => d.priority === d1.priority);
+        if(d2.indexOf(d1)+1 < d2.length)  {
+            //change order in database
+            let d3 = d2[d2.indexOf(d1)+1];
+            //params to send
+            console.log(d1.id, d3.orderRequeriment);
+            console.log(d3.id, d1.orderRequeriment);
+
+            //refresh Data
+            let tmp = d1.orderRequeriment;
+            data.find(d => d.id === d1.id.toString()).orderRequeriment = d3.orderRequeriment;
+            data.find(d => d.id === d3.id.toString()).orderRequeriment = tmp;
+
+            console.log(data);
+
+            fillData(data);
+        }
+        console.log(id);
+    }
+
+    function approveRequeriment(id) {
+        let d1 = data2.filter(d => d.id === id.toString())[0];
+        d1.approved = 'true';
+        console.log(d1);
+        idToEdit = id;
+        dataToEdit = d1;
+
+        editRequerimentCustom();
+    }
+
+    function printActions(id) {
+        return '' +
+            '<a href="#" onclick="upRequeriment('+id+')"><i class="fa fa-arrow-up"></i></span></a> ' +
+            '<a href="#" onclick="downRequeriment('+id+')"><i class="fa fa-arrow-down"></i></span></a> ' +
+            '<a href="#" onclick="onEdit('+id+')"><i class="fa fa-edit"></i></a> ' +
+            '<a href="#" data-toggle="modal" data-target="#modal-delete" onclick="setIdToDelete('+id+')"><i class="fa fa-trash"></i></span></a>' +
+            '';
+    }
+
+    function printActionApproved(id) {
+        return '' +
+            '<a href="#" onclick="approveRequeriment('+id+')"><i class="fa fa-check"></i></span></a> ' +
+            '';
+    }
+
+    function fillData(data) {
+
+        data.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+        data.sort(function(a, b){return a.priority-b.priority});
+
+        $('#tableBody').empty();
+
+        data.forEach(data => {
+            $('#tableBody').append('' +
+                '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                '<td style="text-align: center;">'+printActions(data.id)+'</td>\n' +
+                '<td>'+data.priority+'</td>\n' +
+                '<td>'+data.idRow+'</td>\n' +
+                '<td>'+data.team+'</td>\n' +
+                '<td>'+data.deadLine+'</td>\n' +
+                '<td>'+data.feature+'</td>\n' +
+                '<td>'+data.description+'</td>\n' +
+                '<td>'+data.link+'</td>\n' +
+                '<td>'+data.statusRequeriment+'</td>\n' +
+                '</tr>');
+        });
+
+        data2.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+        data2.sort(function(a, b){return a.priority-b.priority});
+
+        $('#tableBody2').empty();
+
+        data2.forEach(data => {
+            $('#tableBody2').append('' +
+                '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                '<td style="text-align: center;">'+printActionApproved(data.id)+'</td>\n' +
+                '<td>'+data.priority+'</td>\n' +
+                '<td>'+data.idRow+'</td>\n' +
+                '<td>'+data.team+'</td>\n' +
+                '<td>'+data.deadLine+'</td>\n' +
+                '<td>'+data.feature+'</td>\n' +
+                '<td>'+data.description+'</td>\n' +
+                '<td>'+data.link+'</td>\n' +
+                '<td>'+data.statusRequeriment+'</td>\n' +
+                '</tr>');
+        });
+    }
+
+    function getRequeriments() {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "getRequeriments",
+                // "id" : getURLParameter("id"),
+                // "nombre" : $('#nombre')[0].value,
+                // "cedula" : $('#cedula')[0].value,
+                // "clave" : $('#password')[0].value,
+                // "idRol" : $('#selectRole').val()
+            },
+            success: function(response){
+                console.log($.parseJSON(response));
+                data = $.parseJSON(response).filter(d => d.approved === 'true');
+                data2 = $.parseJSON(response).filter(d => d.approved !== 'true');
+                fillData(data);
+            }
+        });
+    }
+
+    // $(function () {
+        $('#deadLineInput').datepicker({
+            autoclose: true
+        });
+
+    getRequeriments();
+
+      // let data = [
+      //     {
+      //         'id': '1',
+      //         'Priority': '0',
+      //         'CommentPriority': '',
+      //         'IdRow': 'LOC13',
+      //         'CommentId': 'LOC13',
+      //         'Team': 'Editorial',
+      //         'CommentTeam': '',
+      //         'Deadline': '',
+      //         'CommentDeadline': '',
+      //         'Feature': 'Geo-Localization',
+      //         'CommentFeature': 'Geo-Localization',
+      //         'Description': 'Ability to manage/geoblock OCS Events in forge in order to mirror the relevant geo-restrictions.<br>' +
+      //         'Other modules activated for geo-localization, and not limited only to the homepage.',
+      //         'CommentDescription': 'description',
+      //         'Link': '<a target="_blank" href="https://deltatre.atlassian.net/wiki/spaces/OC/pages/206667780/Geo-Localization">Confluence Page</a>',
+      //         'CommentLink': 'Link',
+      //         'Status': 'PRODUCTION',
+      //         'CommentStatus': '',
+      //         'approved': 'true',
+      //         'order': '1'
+      //     },
+      //     {
+      //         'id': '2',
+      //         'Priority': '0',
+      //         'IdRow': 'LOC14',
+      //         'Team': 'Editorial',
+      //         'Deadline': '09/18/2018',
+      //         'Feature': 'Geo-Localization',
+      //         'Description': 'Ability to manage/geoblock OCS Events in forge in order',
+      //         'Link': '',
+      //         'Status': 'STANDBY',
+      //         'approved': 'true',
+      //         'order': '2'
+      //     },
+      //     {
+      //         'id': '3',
+      //         'Priority': '0',
+      //         'IdRow': 'LOC15',
+      //         'Team': 'Editorial',
+      //         'Deadline': '',
+      //         'Feature': 'Geo-Localization',
+      //         'Description': 'Ability to manage/geoblock OCS Events in forge in',
+      //         'Link': '<a target="_blank" href="https://deltatre.atlassian.net/wiki/spaces/OC/pages/206667780/Geo-Localization">Confluence Page</a>',
+      //         'Status': 'STANDBY',
+      //         'approved': 'true',
+      //         'order': '4'
+      //     },
+      //     {
+      //         'id': '4',
+      //         'Priority': '1',
+      //         'IdRow': 'LOC16',
+      //         'Team': 'Editorial',
+      //         'Deadline': '',
+      //         'Feature': 'Geo-Localization',
+      //         'Description': 'Ability to manage/geoblock OCS Events in forge in',
+      //         'Link': '<a target="_blank" href="https://deltatre.atlassian.net/wiki/spaces/OC/pages/206667780/Geo-Localization">Confluence Page</a>',
+      //         'Status': 'STANDBY',
+      //         'approved': 'true',
+      //         'order': '1'
+      //     },
+      //     {
+      //         'id': '5',
+      //         'Priority': '1',
+      //         'IdRow': 'LOC17',
+      //         'Team': 'Editorial',
+      //         'Deadline': '',
+      //         'Feature': 'Geo-Localization',
+      //         'Description': 'Ability to manage/geoblock OCS Events in forge in',
+      //         'Link': '<a target="_blank" href="https://deltatre.atlassian.net/wiki/spaces/OC/pages/206667780/Geo-Localization">Confluence Page</a>',
+      //         'Status': 'STANDBY',
+      //         'approved': 'true',
+      //         'order': '2'
+      //     },
+      //     {
+      //         'id': '6',
+      //         'Priority': '0',
+      //         'IdRow': 'LOC18',
+      //         'Team': 'Editorial',
+      //         'Deadline': '',
+      //         'Feature': 'Geo-Localization',
+      //         'Description': 'Ability to manage/geoblock OCS Events in forge in',
+      //         'Link': '<a target="_blank" href="https://deltatre.atlassian.net/wiki/spaces/OC/pages/206667780/Geo-Localization">Confluence Page</a>',
+      //         'Status': 'STANDBY',
+      //         'approved': 'true',
+      //         'order': '3'
+      //     }
+      // ];
+
+    // fillData(data);
+
+      // $('#tableBody').append('<tr '+printBackgroundColor(data[0].Status)+'>\n' +
+      //     '                  <td style="text-align: center;">'+printActions(data[0].id)+'</td>\n' +
+      //     '                  <td>'+data[0].Priority+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Priority, data[0].id, "Priority", data[0].CommentPriority)+'</td>\n' +
+      //     '                  <td>'+data[0].IdRow+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Id, data[0].id, "Id", data[0].CommentId)+'</td>\n' +
+      //     '                  <td>'+data[0].Team+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Team, data[0].id, "Team", data[0].CommentTeam)+'</td>\n' +
+      //     '                  <td>'+data[0].Deadline+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Deadline, data[0].id, "Deadline", data[0].CommentDeadline)+'</td>\n' +
+      //     '                  <td>'+data[0].Feature+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Feature, data[0].id, "Feature", data[0].CommentFeature)+'</td>\n' +
+      //     '                  <td>'+data[0].Description+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Description, data[0].id, "Description", data[0].CommentDescription)+'</td>\n' +
+      //     '                  <td>'+data[0].Link+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Link, data[0].id, "Link", data[0].CommentLink)+'</td>\n' +
+      //     '                  <td>'+data[0].Status+'</td>\n' +
+      //     // '                  <td style="text-align: center;">'+printField(data[0].Status, data[0].id, "Status", data[0].CommentStatus)+'</td>\n' +
+      //     '                </tr>');
+
+    $('#example1').DataTable({
+      'paging'      : false,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : false,
+      'info'        : false,
+      'autoWidth'   : true
+    });
+
+    $('#example2').DataTable({
+        'paging'      : false,
+        'lengthChange': false,
+        'searching'   : false,
+        'ordering'    : false,
+        'info'        : false,
+        'autoWidth'   : true
+    });
+
+    $( "#descriptionInput" ).on( "keydown", function(event) {
+        if(event.which === 13)
+            $( "#descriptionInput" ).val($( "#descriptionInput" ).val() + "<br/>");
+    });
+  // })
+</script>
+</body>
+</html>
