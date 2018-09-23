@@ -94,8 +94,12 @@
                   <div class="form-group">
                     <label for="statusInput">Status</label>
                     <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="statusInput">
-                      <option selected="selected">STANDBY</option>
-                      <option>PRODUCTION</option>
+                      <option selected="selected">In queue</option>
+                      <option>Processing</option>
+                      <option>Completed</option>
+                      <option>Blocked</option>
+                      <option>Awating</option>
+                      <option>Information</option>
                     </select>
                   </div>
 
@@ -171,7 +175,7 @@
 
     <section class="content-header">
       <h1>
-        To Approve
+        Pending Approval
       </h1>
     </section>
 
@@ -272,7 +276,16 @@
     let dataUser = {};
 
     function printBackgroundColor(status) {
-        return status !== 'PRODUCTION' ? 'style="background-color: #f9f9f9;"' : 'style="background-color: #63dea6;"';
+        if (status === 'Processing')
+          return 'style="background-color: #f39c12;"';
+
+        if (status === 'Blocked')
+          return 'style="background-color: #dd4b39;"';
+
+        if (status === 'Completed')
+          return 'style="background-color: #63dea6;"';
+
+        return 'style="background-color: #f9f9f9;"';
     }
 
     function saveUrl() {
@@ -545,6 +558,12 @@
             '';
     }
 
+    function printActionEdit(id) {
+        return '' +
+            '<a href="#" onclick="onEdit('+id+')"><i class="fa fa-edit"></i></a> ' +
+            '';
+    }
+
     function printActionApproved(id) {
         return '' +
             '<a href="#" onclick="approveRequeriment('+id+')"><i class="fa fa-check"></i></span></a> ' +
@@ -577,6 +596,7 @@
             data.forEach(data => {
                 $('#tableBody').append('' +
                     '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                    '<td style="text-align: center;">'+printActionEdit(data.id)+'</td>\n' +
                     '<td>'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
@@ -634,10 +654,12 @@
                 "method" : "getRequeriments",
             },
             success: function(response){
+              if ($.parseJSON(response).length > 0){
                 console.log($.parseJSON(response));
                 data = $.parseJSON(response).filter(d => d.approved === 'true');
                 data2 = $.parseJSON(response).filter(d => d.approved !== 'true');
                 fillData(data);
+              }
             }
         });
     }
@@ -654,8 +676,8 @@
         $('#role').text(dataUser.role + ':  ');
 
         if (dataUser.role !== 'ADMIN') {
-            $('#newSectionButton').css('display', 'none');
-            $('#actionRowApprovedRequeriments').css('display', 'none');
+            //$('#newSectionButton').css('display', 'none');
+            //$('#actionRowApprovedRequeriments').css('display', 'none');
             $('#actionRowNotApprovedRequeriments').css('display', 'none');
         }
 

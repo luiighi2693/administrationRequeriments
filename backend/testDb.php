@@ -1,20 +1,25 @@
 <?php
-$host_name = 'db754482285.db.1and1.com';
-$database = 'db754482285';
-$user_name = 'dbo754482285';
-$password = '@Green.123!';
-$connect = mysqli_connect($host_name, $user_name, $password, $database);
+/*$host_name = 'innovabitalent.com';
+$database = 'innovabi_requeriments';
+$user_name = 'innovabi_reqs';
+$password = 'greensize2018';
+$connect = mysqli_connect($host_name, $user_name, $password, $database);*/
 
-$mysqli = new mysqli("db754482285.db.1and1.com", "db754482285", "@Green.123!", "db754482285");
+//$mysqli = new mysqli("innovabitalent.com", "innovabi_reqs", "greensize2018", "innovabi_requeriments");
+$mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", "db754482285");
 
-if (mysqli_connect_errno()) {
+/*if (mysqli_connect_errno()) {
     die('<p>Failed to connect to MySQL: '.mysqli_connect_error().'</p>');
 } else {
     echo '<p>Connection to MySQL server successfully established.</p >';
-    $query = 'INSERT INTO users (username, psw, role, ) VALUES (\'ehurtado\', \'123456\',\'ADMIN\')';
+    // $query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'123456\',\'ADMIN\')';
+}*/
+
+ $query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'greensize2018\',\'ADMIN\')';
+ // $query = 'SELECT * FROM users WHERE username = \'ehurtado\'';
+// $query = 'DELETE FROM users WHERE id= 1';
     echo $query;
     executeQuery($query);
-}
 
 function executeQuery($query){
 //    echo $query;

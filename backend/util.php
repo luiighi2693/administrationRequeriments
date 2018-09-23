@@ -1,6 +1,6 @@
 <?php
 //$mysqli = new mysqli("localhost", "root", "", "requeriments");
-$mysqli = new mysqli("db754482285.db.1and1.com", "db754482285", "@Green.123!", "db754482285");
+$mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", "db754482285");
 
 if($_POST['method']=='getRequeriments'){
     getRequeriments();
