@@ -1,0 +1,43 @@
+<?php
+$host_name = 'db754482285.db.1and1.com';
+$database = 'db754482285';
+$user_name = 'dbo754482285';
+$password = '@Green.123!';
+$connect = mysqli_connect($host_name, $user_name, $password, $database);
+
+$mysqli = new mysqli("db754482285.db.1and1.com", "db754482285", "@Green.123!", "db754482285");
+
+if (mysqli_connect_errno()) {
+    die('<p>Failed to connect to MySQL: '.mysqli_connect_error().'</p>');
+} else {
+    echo '<p>Connection to MySQL server successfully established.</p >';
+    $query = 'INSERT INTO users (username, psw, role, ) VALUES (\'ehurtado\', \'123456\',\'ADMIN\')';
+    echo $query;
+    executeQuery($query);
+}
+
+function executeQuery($query){
+//    echo $query;
+    global $mysqli;
+    $result = $mysqli->query($query);
+
+    $array = array();
+    error_reporting(E_ERROR | E_PARSE);
+
+    if($result->num_rows ==null){
+        $arr = array('id' => $mysqli->insert_id);
+        $response = json_encode($arr);
+    }else{
+        for ($i = 0; $i < $result->num_rows; $i++) {
+            array_push($array,$result->fetch_array(MYSQLI_ASSOC));
+        }
+        $response = json_encode($array);
+    }
+
+    mysqli_free_result($result);
+    $mysqli->close();
+
+
+    echo $response;
+}
+?>
