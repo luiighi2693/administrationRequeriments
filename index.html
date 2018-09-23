@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Requeriments</title>
+  <title>Post v2 Roadmap</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -29,18 +29,17 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user.png" class="user-image" alt="User Image">
-              <span class="hidden-xs">Enrique Hurtado</span>
+              <span class="hidden-xs" id="role"></span>
+              <span class="hidden-xs" id="username1"></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <img src="dist/img/user.png" class="img-circle" alt="User Image">
-                <p>
-                  Enrique Hurtado
-                </p>
+                <p id="username2"></p>
               </li>
               <li class="user-footer">
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat" onclick="logout()">Log out</a>
                 </div>
               </li>
             </ul>
@@ -133,7 +132,7 @@
 
     <section class="content-header">
       <h1>
-        Post v3 Roadmap
+        Post v2 Roadmap
         <button id="newSectionButton" type="button" class="btn btn-block btn-primary pull-right" style="width: 10%;" onclick="showNewSection()">New</button>
       </h1>
     </section>
@@ -146,7 +145,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Actions</th>
+                  <th id="actionRowApprovedRequeriments">Actions</th>
                   <th>Priority</th>
                   <th>Id</th>
                   <th>Team</th>
@@ -184,7 +183,7 @@
               <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Actions</th>
+                  <th id="actionRowNotApprovedRequeriments">Actions</th>
                   <th>Priority</th>
                   <th>Id</th>
                   <th>Team</th>
@@ -270,6 +269,7 @@
     let data = [];
     let data2 = [];
     let dataToEdit = {};
+    let dataUser = {};
 
     function printBackgroundColor(status) {
         return status !== 'PRODUCTION' ? 'style="background-color: #f9f9f9;"' : 'style="background-color: #63dea6;"';
@@ -558,40 +558,72 @@
 
         $('#tableBody').empty();
 
-        data.forEach(data => {
-            $('#tableBody').append('' +
-                '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
-                '<td style="text-align: center;">'+printActions(data.id)+'</td>\n' +
-                '<td>'+data.priority+'</td>\n' +
-                '<td>'+data.idRow+'</td>\n' +
-                '<td>'+data.team+'</td>\n' +
-                '<td>'+data.deadLine+'</td>\n' +
-                '<td>'+data.feature+'</td>\n' +
-                '<td>'+data.description+'</td>\n' +
-                '<td>'+data.link+'</td>\n' +
-                '<td>'+data.statusRequeriment+'</td>\n' +
-                '</tr>');
-        });
+        if (dataUser.role === 'ADMIN') {
+            data.forEach(data => {
+                $('#tableBody').append('' +
+                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                    '<td style="text-align: center;">'+printActions(data.id)+'</td>\n' +
+                    '<td>'+data.priority+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
+                    '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+data.feature+'</td>\n' +
+                    '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.link+'</td>\n' +
+                    '<td>'+data.statusRequeriment+'</td>\n' +
+                    '</tr>');
+            });
+        } else {
+            data.forEach(data => {
+                $('#tableBody').append('' +
+                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                    '<td>'+data.priority+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
+                    '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+data.feature+'</td>\n' +
+                    '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.link+'</td>\n' +
+                    '<td>'+data.statusRequeriment+'</td>\n' +
+                    '</tr>');
+            });
+        }
 
         data2.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
         data2.sort(function(a, b){return a.priority-b.priority});
 
         $('#tableBody2').empty();
 
-        data2.forEach(data => {
-            $('#tableBody2').append('' +
-                '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
-                '<td style="text-align: center;">'+printActionApproved(data.id)+'</td>\n' +
-                '<td>'+data.priority+'</td>\n' +
-                '<td>'+data.idRow+'</td>\n' +
-                '<td>'+data.team+'</td>\n' +
-                '<td>'+data.deadLine+'</td>\n' +
-                '<td>'+data.feature+'</td>\n' +
-                '<td>'+data.description+'</td>\n' +
-                '<td>'+data.link+'</td>\n' +
-                '<td>'+data.statusRequeriment+'</td>\n' +
-                '</tr>');
-        });
+        if (dataUser.role === 'ADMIN') {
+            data2.forEach(data => {
+                $('#tableBody2').append('' +
+                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                    '<td style="text-align: center;">'+printActionApproved(data.id)+'</td>\n' +
+                    '<td>'+data.priority+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
+                    '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+data.feature+'</td>\n' +
+                    '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.link+'</td>\n' +
+                    '<td>'+data.statusRequeriment+'</td>\n' +
+                    '</tr>');
+            });
+        } else {
+            data2.forEach(data => {
+                $('#tableBody2').append('' +
+                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                    '<td>'+data.priority+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
+                    '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+data.feature+'</td>\n' +
+                    '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.link+'</td>\n' +
+                    '<td>'+data.statusRequeriment+'</td>\n' +
+                    '</tr>');
+            });
+        }
     }
 
     function getRequeriments() {
@@ -610,34 +642,55 @@
         });
     }
 
+    function logout() {
+        window.sessionStorage.setItem('token', null);
+        window.location = 'login.html';
+    }
+
+    if (window.sessionStorage.getItem('token') !== null) {
+        dataUser = $.parseJSON(window.sessionStorage.getItem('token'))[0];
+        $('#username1').text(dataUser.username);
+        $('#username2').text(dataUser.username);
+        $('#role').text(dataUser.role + ':  ');
+
+        if (dataUser.role !== 'ADMIN') {
+            $('#newSectionButton').css('display', 'none');
+            $('#actionRowApprovedRequeriments').css('display', 'none');
+            $('#actionRowNotApprovedRequeriments').css('display', 'none');
+        }
+
+
         $('#deadLineInput').datepicker({
             autoclose: true
         });
 
-    getRequeriments();
+        getRequeriments();
 
-    $('#example1').DataTable({
-      'paging'      : false,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : false,
-      'info'        : false,
-      'autoWidth'   : true
-    });
+        $('#example1').DataTable({
+            'paging'      : false,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : false,
+            'info'        : false,
+            'autoWidth'   : true
+        });
 
-    $('#example2').DataTable({
-        'paging'      : false,
-        'lengthChange': false,
-        'searching'   : false,
-        'ordering'    : false,
-        'info'        : false,
-        'autoWidth'   : true
-    });
+        $('#example2').DataTable({
+            'paging'      : false,
+            'lengthChange': false,
+            'searching'   : false,
+            'ordering'    : false,
+            'info'        : false,
+            'autoWidth'   : true
+        });
 
-    $( "#descriptionInput" ).on( "keydown", function(event) {
-        if(event.which === 13)
-            $( "#descriptionInput" ).val($( "#descriptionInput" ).val() + "<br/>");
-    });
+        $( "#descriptionInput" ).on( "keydown", function(event) {
+            if(event.which === 13)
+                $( "#descriptionInput" ).val($( "#descriptionInput" ).val() + "<br/>");
+        });
+    }else {
+        logout();
+    }
 </script>
 </body>
 </html>
