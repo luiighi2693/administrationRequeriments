@@ -15,8 +15,8 @@ $mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", 
     // $query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'123456\',\'ADMIN\')';
 }*/
 
- $query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'greensize2018\',\'ADMIN\')';
- // $query = 'SELECT * FROM users WHERE username = \'ehurtado\'';
+ //$query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'greensize2018\',\'ADMIN\')';
+  $query = 'SELECT * FROM users WHERE username = \'ehurtado\'';
 // $query = 'DELETE FROM users WHERE id= 1';
     echo $query;
     executeQuery($query);

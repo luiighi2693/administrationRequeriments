@@ -293,7 +293,7 @@
     }
 
     function cleanFields() {
-        $('#titleLink').val('');
+        $('#titleLink').val('Confluence Page');
         $('#urlLink').val('');
         $('#linkText').val('');
         $('#priorityInput').val('');
@@ -301,7 +301,7 @@
         $('#idInput').val('');
         $('#deadLineInput').val('');
         $('#requerimentInput').val('');
-        $('#statusInput').val('STANDBY');
+        $('#statusInput').val('In queue');
         $('#descriptionInput').val('');
     }
 
@@ -410,6 +410,84 @@
                 getRequeriments();
             }
         });
+    }
+
+    function editRequerimentCustom2() {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "editRequeriment",
+                "id" : idToEdit,
+                "priority": dataToEdit.priority,
+                "idRow": dataToEdit.idRow,
+                "team": dataToEdit.team,
+                "deadLine": dataToEdit.deadLine,
+                "feature": dataToEdit.feature,
+                "description": dataToEdit.description,
+                "link": dataToEdit.link,
+                "statusRequeriment": dataToEdit.statusRequeriment,
+                "approved": dataToEdit.approved,
+                "orderRequeriment": dataToEdit.orderRequeriment
+            },
+            success: function(response){
+                console.log(response);
+            },
+            async: false
+        });
+    }
+
+    function orderByPriority(priority){
+      let d1 = data.filter(d => d.priority === priority);
+      let i = 1;
+      d1.forEach(d => {
+        d.orderRequeriment = i;
+        idToEdit = d.id;
+        dataToEdit = d;
+        editRequerimentCustom2();
+        i++;
+      });
+    } 
+
+    function orderByPriority2(data, priority){
+      let d1 = data.filter(d => d.priority === priority);
+      let i = 1;
+      d1.forEach(d => {
+        d.orderRequeriment = i;
+        idToEdit = d.id;
+        dataToEdit = d;
+        editRequerimentCustom2();
+        i++;
+      });
+    } 
+
+    function getRequerimentsToOrder(priority) {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "getRequeriments",
+            },
+            success: function(response){
+                console.log($.parseJSON(response));
+                data = $.parseJSON(response).filter(d => d.approved === 'true');
+            orderByPriority2(data, priority);
+            },
+            async: false
+        });
+    }
+
+    function approveAll(){
+      let d1 = data2;
+      let i = 0;
+      d1.forEach(d => {
+        d.order = i;
+        d.approved = 'true';
+        idToEdit = d.id;
+        dataToEdit = d;
+        editRequerimentCustom2();
+        i++;
+      });
     }
 
     function editRequerimentCustomWithoutRefreshData(requeriments) {
@@ -572,8 +650,20 @@
 
     function fillData(data) {
 
-        data.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
-        data.sort(function(a, b){return a.priority-b.priority});
+      let dataTmp = [];
+
+      Array.from(data, x => x.priority).reduce((x, y) => x.includes(y) ? x : [...x, y], []).forEach(pr => {
+          let dAux = data.filter(d => d.priority === pr);
+          dAux.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+          dAux.forEach(a => {
+            dataTmp.push(a);
+          });
+      });
+
+      data = dataTmp;
+
+      //  data.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+       // data.sort(function(a, b){return a.priority-b.priority});
 
         $('#tableBody').empty();
 
@@ -609,8 +699,20 @@
             });
         }
 
-        data2.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
-        data2.sort(function(a, b){return a.priority-b.priority});
+         dataTmp = [];
+
+      Array.from(data2, x => x.priority).reduce((x, y) => x.includes(y) ? x : [...x, y], []).forEach(priority => {
+          dAux = data2.filter(d => d.priority === priority);
+          dAux.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+          dAux.forEach(a => {
+            dataTmp.push(a);
+          });
+      });
+
+      data2 = dataTmp;
+
+        //data2.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+       // data2.sort(function(a, b){return a.priority-b.priority});
 
         $('#tableBody2').empty();
 
@@ -659,6 +761,8 @@
                 data = $.parseJSON(response).filter(d => d.approved === 'true');
                 data2 = $.parseJSON(response).filter(d => d.approved !== 'true');
                 fillData(data);
+              } else {
+                $('#tableBody').empty();
               }
             }
         });
