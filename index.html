@@ -151,6 +151,7 @@
                 <thead>
                 <tr>
                   <th id="actionRowApprovedRequeriments">Actions</th>
+                  <th>#</th>
                   <th>Priority</th>
                   <th>Id</th>
                   <th>Team</th>
@@ -189,6 +190,7 @@
                 <thead>
                 <tr>
                   <th id="actionRowNotApprovedRequeriments">Actions</th>
+                  <th>#</th>
                   <th>Priority</th>
                   <th>Id</th>
                   <th>Team</th>
@@ -673,12 +675,15 @@
 
         $('#tableBody').empty();
 
+        let i = 1;
+
         if (dataUser.role === 'ADMIN') {
             data.forEach(data => {
                 $('#tableBody').append('' +
                     '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
                     '<td style="text-align: center;">'+printActions(data.id)+'</td>\n' +
-                    '<td>'+data.priority+'</td>\n' +
+                    '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
                     '<td>'+data.deadLine+'</td>\n' +
@@ -687,13 +692,16 @@
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '</tr>');
+
+                i++;
             });
         } else {
             data.forEach(data => {
                 $('#tableBody').append('' +
                     '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
                     '<td style="text-align: center;">'+printActionEdit(data.id)+'</td>\n' +
-                    '<td>'+data.priority+'</td>\n' +
+                    '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
                     '<td>'+data.deadLine+'</td>\n' +
@@ -702,6 +710,8 @@
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '</tr>');
+
+                i++;
             });
         }
 
@@ -722,12 +732,15 @@
 
         $('#tableBody2').empty();
 
+        i = 1;
+
         if (dataUser.role === 'ADMIN') {
             data2.forEach(data => {
                 $('#tableBody2').append('' +
                     '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
                     '<td style="text-align: center;">'+printActionApproved(data.id)+'</td>\n' +
-                    '<td>'+data.priority+'</td>\n' +
+                    '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
                     '<td>'+data.deadLine+'</td>\n' +
@@ -736,12 +749,15 @@
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '</tr>');
+
+                i++;
             });
         } else {
             data2.forEach(data => {
                 $('#tableBody2').append('' +
                     '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
-                    '<td>'+data.priority+'</td>\n' +
+                    '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
                     '<td>'+data.deadLine+'</td>\n' +
@@ -750,6 +766,8 @@
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '</tr>');
+
+                i++;
             });
         }
     }

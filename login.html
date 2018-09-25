@@ -58,8 +58,25 @@
         </div>
 
         <!-- /.col -->
+        <!--<div class="col-xs-12" style="margin-top: 5%;">-->
+          <!--<button class="btn btn-primary btn-block btn-flat" onclick="loginGuest()">Login Guest</button>-->
+        <!--</div>-->
+
+        <!-- /.col -->
+      </div>
+    </div>
+
+    <p class="login-box-msg">Or</p>
+
+    <div>
+      <div class="form-group has-feedback">
+        <input id="guestUsername" type="text" class="form-control" placeholder="Username">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <!-- /.col -->
         <div class="col-xs-12" style="margin-top: 5%;">
-          <button class="btn btn-primary btn-block btn-flat" onclick="loginGuest()">Login Guest</button>
+          <button id="loginGuestButton" class="btn btn-primary btn-block btn-flat disabled" onclick="loginGuest()">Login Guest</button>
         </div>
 
         <!-- /.col -->
@@ -121,13 +138,18 @@
 
   function loginGuest() {
     let guestData= [];
-    guestData.push({"username":"GUEST", "role":"USER"});
+    guestData.push({"username":$('#guestUsername').val(), "role":"USER"});
 
      window.sessionStorage.setItem('token', JSON.stringify(guestData));
       window.location = 'index.html';
   }
 
-  $(function () {
+  $( "#guestUsername" ).on( "keyup", function() {
+      if ($('#guestUsername').val().length === 0){
+          $('#loginGuestButton').addClass('disabled');
+      } else {
+          $('#loginGuestButton').removeClass('disabled');
+      }
   });
 </script>
 </body>
