@@ -138,7 +138,7 @@
     <section class="content-header">
       <h1>
         Post v2 Roadmap
-        <button id="newSectionButton" type="button" class="btn btn-block btn-primary pull-right" style="width: 10%;" onclick="showNewSection()">New</button>
+        <button id="newSectionButton" type="button" class="btn btn-block btn-primary pull-right" style="width: 10%;" onclick="showNewSection()">New Requeriment</button>
       </h1>
     </section>
 
@@ -160,6 +160,7 @@
                   <th>Description</th>
                   <th>Link</th>
                   <th>Status</th>
+                  <th>Observations</th>
                 </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -256,6 +257,32 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" onclick="cancelDelete()" data-dismiss="modal">Cancel</button>
         <button type="button" class="btn btn-danger" onclick="deleteRequeriment()" data-dismiss="modal">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal-comments">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Comments</h4>
+      </div>
+      <div class="modal-body">
+        <div id="addCommentButton">
+          <div class="col-xs-4">
+            <button type="button" class="btn btn-block btn-primary"><i class="fa fa-plus"></i></button>
+          </div>
+          <div class="col-xs-8">
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-default pull-left" onclick="cancelDelete()" data-dismiss="modal">Cancel</button>-->
+        <!--<button type="button" class="btn btn-danger" onclick="deleteRequeriment()" data-dismiss="modal">Delete</button>-->
       </div>
     </div>
   </div>
@@ -656,6 +683,15 @@
             '';
     }
 
+    function printComments(id) {
+        return '' +
+            '<a class="btn btn-app btn-app-custom" data-toggle="modal" data-target="#modal-comments">\n' +
+            '   <span class="badge bg-green">!</span>\n' +
+            '   <i class="fa fa-eye"></i>\n' +
+            ' </a>' +
+            '';
+    }
+
     function fillData(data) {
 
       let dataTmp = [];
@@ -691,6 +727,7 @@
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td style="text-align: center;">'+printComments(data.id)+'</td>\n' +
                     '</tr>');
 
                 i++;
@@ -709,6 +746,7 @@
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td style="text-align: center;">'+printComments(data.id)+'</td>\n' +
                     '</tr>');
 
                 i++;

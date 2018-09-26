@@ -4975,3 +4975,9 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+.btn-app-custom {
+  padding: 5px 5px !important;
+  min-width: 40px !important;
+  height: 30px !important;
+}
