@@ -31,4 +31,25 @@ create table users
 alter table users
   add primary key (id);
 
+create table comments
+(
+  id                int auto_increment,
+  usernameComment          varchar(100)           null,
+  dateComment             varchar(50)   null,
+  contentComment              varchar(5000)  null,
+  emailToNotifyComment          varchar(50)   null,
+  flagComment           varchar(50)  null,
+  usernameAnswer          varchar(100)           null,
+  dateAnswer             varchar(50)   null,
+  contentAnswer              varchar(5000)  null,
+  emailToNotifyAnswer          varchar(50)   null,
+  flagAnswer           varchar(50)  null,
+  idRequeriment  int           null,
+  constraint comments_id_uindex
+  unique (id)
+);
+
+alter table comments
+  add primary key (id);
+
 
