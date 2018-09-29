@@ -86,7 +86,7 @@
                     <div class="input-group">
                       <input id="linkText" type="text" class="form-control" placeholder="Enter a Link" disabled="">
                       <span class="input-group-btn">
-                      <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-default">New Requirement</button>
+                      <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-default">New</button>
                     </span>
                     </div>
                   </div>
@@ -271,11 +271,127 @@
         <h4 class="modal-title">Comments</h4>
       </div>
       <div class="modal-body">
-        <div id="addCommentButton">
-          <div class="col-xs-4">
-            <button type="button" class="btn btn-block btn-primary"><i class="fa fa-plus"></i></button>
+        <div class="direct-chat-messages" style="display: none;">
+          <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+              <span class="direct-chat-name pull-left">Alexander Pierce</span>
+              <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
+            </div>
+            <div class="col-xs-11">
+              <i class="fa fa-fw fa-flag-o bg-green" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
+              <div class="direct-chat-text">
+                Is this template really for free? That's unbelievable!
+              </div>
+            </div>
+            <div class="col-xs-1" style="padding-top: 2%;">
+              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
+            </div>
+
+            <!--<a href="#" class="pull-right" style="padding-right: 10%;">Add Answer</a>-->
           </div>
-          <div class="col-xs-8">
+
+          <div class="direct-chat-msg right" style="display: block">
+            <div class="direct-chat-info clearfix">
+              <span class="direct-chat-name pull-right">Sarah Bullock</span>
+              <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
+            </div>
+            <div class="col-xs-1" style="padding-top: 2%;">
+              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
+            </div>
+            <div class="col-xs-11">
+              <i class="fa fa-fw fa-flag-o bg-yellow pull-right" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
+              <div class="direct-chat-text">
+                You better believe it!
+              </div>
+            </div>
+          </div>
+
+          <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+              <span class="direct-chat-name pull-left">Alexander Pierce</span>
+              <span class="direct-chat-timestamp pull-right">23 Jan 3:00 pm</span>
+            </div>
+            <div class="col-xs-11">
+              <i class="fa fa-fw fa-flag-o bg-red" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
+              <div class="direct-chat-text">
+                comment 2
+              </div>
+            </div>
+            <div class="col-xs-1" style="padding-top: 2%;">
+              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
+            </div>
+
+            <!--<a href="#" class="pull-right" style="padding-right: 10%;">Add Answer</a>-->
+          </div>
+
+          <div class="direct-chat-msg">
+            <div class="direct-chat-info clearfix">
+              <span class="direct-chat-name pull-left">Alexander Pierce</span>
+              <span class="direct-chat-timestamp pull-right">23 Jan 3:05 pm</span>
+            </div>
+            <div class="col-xs-11">
+              <i class="fa fa-fw fa-flag-o bg-yellow" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
+              <div class="direct-chat-text">
+                comment 3!!
+              </div>
+            </div>
+            <div class="col-xs-1" style="padding-top: 2%;">
+              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
+            </div>
+
+            <!--<a href="#" class="pull-right" style="padding-right: 10%;">Add Answer</a>-->
+          </div>
+        </div>
+
+        <div id="addCommentButton" style="display: block;">
+          <div class="col-xs-2">
+            <button type="button" class="btn btn-block btn-primary" onclick="addComment()"><i class="fa fa-plus"></i></button>
+          </div>
+          <div class="col-xs-10">
+          </div>
+        </div>
+
+        <div id="addCommentForm" style="display: none;">
+          <div>
+            <div class="box-body">
+              <h4>New Comment</h4>
+
+              <div class="row">
+                <div class="col-xs-1">
+                  <div class="radio" style="margin-top: 0;">
+                    <label>
+                      <input type="radio" name="flagRadios" id="flagRadios1" value="green" checked>
+                      <i class="fa fa-fw fa-flag-o bg-green"></i>
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="flagRadios" id="flagRadios2" value="yellow">
+                      <i class="fa fa-fw fa-flag-o bg-yellow"></i>
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="flagRadios" id="flagRadios3" value="red">
+                      <i class="fa fa-fw fa-flag-o bg-red"></i>
+                    </label>
+                  </div>
+                </div>
+                <div class="col-xs-11">
+                  <textarea class="form-control" rows="3" placeholder="Enter a comment" maxlength="5000" id="textAreaComment"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="email" class="form-control" id="emailNotyfyComment" placeholder="Email to Notify">
+              </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button id="cancelCommentButton" class="btn btn-default" onclick="cancelComment()">Cancel</button>
+              <button class="btn btn-info pull-right" onclick="saveComment()">save</button>
+            </div>
+            <!-- /.box-footer -->
           </div>
         </div>
 
@@ -305,6 +421,11 @@
     let dataToEdit = {};
     let dataUser = {};
     let firsTimeFlag = true;
+
+    let idRequerimentSelected = '';
+    let editComment = false;
+    let isAnswer = false;
+    let editAnswer = false;
 
     function printBackgroundColor(status) {
         if (status === 'Processing')
@@ -683,10 +804,14 @@
             '';
     }
 
+    function printRandomDisplay() {
+        return Math.floor((Math.random() * 2) + 1) === 2 ? "none" : "block";
+    }
+
     function printComments(id) {
         return '' +
-            '<a class="btn btn-app btn-app-custom" data-toggle="modal" data-target="#modal-comments">\n' +
-            '   <span class="badge bg-green">!</span>\n' +
+            '<a class="btn btn-app btn-app-custom" data-toggle="modal" data-target="#modal-comments" onclick="changeRequerimentSelected('+id+')">\n' +
+            '   <span class="badge bg-green" style="display: '+printRandomDisplay()+'">!</span>\n' +
             '   <i class="fa fa-eye"></i>\n' +
             ' </a>' +
             '';
@@ -705,9 +830,6 @@
       });
 
       data = dataTmp;
-
-      //  data.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
-       // data.sort(function(a, b){return a.priority-b.priority});
 
         $('#tableBody').empty();
 
@@ -765,11 +887,7 @@
 
       data2 = dataTmp;
 
-        //data2.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
-       // data2.sort(function(a, b){return a.priority-b.priority});
-
         $('#tableBody2').empty();
-
         i = 1;
 
         if (dataUser.role === 'ADMIN') {
@@ -858,6 +976,64 @@
         window.location = 'login.html';
     }
 
+    function changeRequerimentSelected(id) {
+        idRequerimentSelected = id;
+    }
+
+    function addComment() {
+        let editComment = false;
+        let isAnswer = false;
+        let editAnswer = false;
+
+        $('#addCommentButton').css('display','none');
+        $('#addCommentForm').css('display','block');
+    }
+
+    function cancelComment() {
+        let editComment = false;
+        let isAnswer = false;
+        let editAnswer = false;
+
+        // console.log($('input[name=flagRadios]:checked').val());
+        // console.log($('#textAreaComment').val());
+
+        $('input[name=flagRadios][value=green]').prop('checked', true);
+        $('#textAreaComment').val('');
+        $('#emailNotyfyComment').val('');
+
+        $('#addCommentButton').css('display','block');
+        $('#addCommentForm').css('display','none');
+    }
+
+    function getFormattedDate() {
+        const d = new Date().toString();
+        return d.substring(8, 10) + ' ' + d.substring(4, 7) + ' ' + d.substring(11, 15) + ', ' + d.substring(16, 21);
+    }
+
+    function saveComment() {
+        if (editComment) {
+            if (isAnswer) {
+                if (editAnswer) {
+                    console.log('edit comment');
+                } else {
+                    console.log('new answer');
+                }
+            } else {
+                console.log('edit comment');
+            }
+        } else {
+            console.log('new comment');
+        }
+
+        console.log(idRequerimentSelected);
+        console.log($('input[name=flagRadios]:checked').val());
+        console.log($('#textAreaComment').val());
+        console.log($('#emailNotyfyComment').val());
+        console.log(dataUser.username);
+        console.log(getFormattedDate());
+        console.log('COMMENT');
+    }
+
     if (window.sessionStorage.getItem('token') !== null) {
         dataUser = $.parseJSON(window.sessionStorage.getItem('token'))[0];
         $('#username1').text(dataUser.username);
@@ -865,11 +1041,8 @@
         $('#role').text(dataUser.role + ':  ');
 
         if (dataUser.role !== 'ADMIN') {
-            //$('#newSectionButton').css('display', 'none');
-            //$('#actionRowApprovedRequeriments').css('display', 'none');
             $('#actionRowNotApprovedRequeriments').css('display', 'none');
         }
-
 
         $('#deadLineInput').datepicker({
             autoclose: true
@@ -877,24 +1050,6 @@
 
         getRequeriments();
 
-        /*$('#example1').DataTable({
-            'paging'      : false,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : false,
-            'info'        : false,
-            'autoWidth'   : true
-        });
-
-        $('#example2').DataTable({
-            'paging'      : false,
-            'lengthChange': false,
-            'searching'   : false,
-            'ordering'    : false,
-            'info'        : false,
-            'autoWidth'   : true
-        });
-*/
         $( "#descriptionInput" ).on( "keydown", function(event) {
             if(event.which === 13)
                 $( "#descriptionInput" ).val($( "#descriptionInput" ).val() + "<br/>");
