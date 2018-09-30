@@ -126,7 +126,7 @@ function editComment(){
                 usernameAnswer=\''.$_POST['usernameAnswer'].'\', 
                 dateAnswer=\''.$_POST['dateAnswer'].'\', 
                 contentAnswer=\''.$_POST['contentAnswer'].'\', 
-                emailToNotifyAnswer=\''.$_POST['emailToNotifyAnswer'].'\' 
+                emailToNotifyAnswer=\''.$_POST['emailToNotifyAnswer'].'\', 
                 flagAnswer=\''.$_POST['flagAnswer'].'\' 
                 WHERE id='.$_POST['id'];
 
@@ -134,7 +134,7 @@ function editComment(){
 }
 
 function executeQuery($query){
-//    echo $query;
+ //   echo $query;
     global $mysqli;
     $result = $mysqli->query($query);
 

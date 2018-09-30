@@ -271,76 +271,8 @@
         <h4 class="modal-title">Comments</h4>
       </div>
       <div class="modal-body">
-        <div class="direct-chat-messages" style="display: none;">
-          <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left">Alexander Pierce</span>
-              <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-            </div>
-            <div class="col-xs-11">
-              <i class="fa fa-fw fa-flag-o bg-green" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
-              <div class="direct-chat-text">
-                Is this template really for free? That's unbelievable!
-              </div>
-            </div>
-            <div class="col-xs-1" style="padding-top: 2%;">
-              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
-            </div>
-
-            <!--<a href="#" class="pull-right" style="padding-right: 10%;">Add Answer</a>-->
-          </div>
-
-          <div class="direct-chat-msg right" style="display: block">
-            <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-right">Sarah Bullock</span>
-              <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-            </div>
-            <div class="col-xs-1" style="padding-top: 2%;">
-              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
-            </div>
-            <div class="col-xs-11">
-              <i class="fa fa-fw fa-flag-o bg-yellow pull-right" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
-              <div class="direct-chat-text">
-                You better believe it!
-              </div>
-            </div>
-          </div>
-
-          <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left">Alexander Pierce</span>
-              <span class="direct-chat-timestamp pull-right">23 Jan 3:00 pm</span>
-            </div>
-            <div class="col-xs-11">
-              <i class="fa fa-fw fa-flag-o bg-red" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
-              <div class="direct-chat-text">
-                comment 2
-              </div>
-            </div>
-            <div class="col-xs-1" style="padding-top: 2%;">
-              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
-            </div>
-
-            <!--<a href="#" class="pull-right" style="padding-right: 10%;">Add Answer</a>-->
-          </div>
-
-          <div class="direct-chat-msg">
-            <div class="direct-chat-info clearfix">
-              <span class="direct-chat-name pull-left">Alexander Pierce</span>
-              <span class="direct-chat-timestamp pull-right">23 Jan 3:05 pm</span>
-            </div>
-            <div class="col-xs-11">
-              <i class="fa fa-fw fa-flag-o bg-yellow" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 2%;"></i>
-              <div class="direct-chat-text">
-                comment 3!!
-              </div>
-            </div>
-            <div class="col-xs-1" style="padding-top: 2%;">
-              <!--<a href="#"><i class="fa fa-edit"></i></a>-->
-            </div>
-
-            <!--<a href="#" class="pull-right" style="padding-right: 10%;">Add Answer</a>-->
-          </div>
+        <div class="direct-chat-messages" id="commentBody">
+          
         </div>
 
         <div id="addCommentButton" style="display: block;">
@@ -354,7 +286,7 @@
         <div id="addCommentForm" style="display: none;">
           <div>
             <div class="box-body">
-              <h4>New Comment</h4>
+              <h4 id="commentFormTitle">New Comment</h4>
 
               <div class="row">
                 <div class="col-xs-1">
@@ -426,6 +358,9 @@
     let editComment = false;
     let isAnswer = false;
     let editAnswer = false;
+
+    let comment = {};
+    let idComment = '';
 
     function printBackgroundColor(status) {
         if (status === 'Processing')
@@ -804,14 +739,14 @@
             '';
     }
 
-    function printRandomDisplay() {
-        return Math.floor((Math.random() * 2) + 1) === 2 ? "none" : "block";
+    function printDisplay(comments) {
+        return comments.length === 0 ? "none" : "block";
     }
 
-    function printComments(id) {
+    function printComments(id, comments) {
         return '' +
             '<a class="btn btn-app btn-app-custom" data-toggle="modal" data-target="#modal-comments" onclick="changeRequerimentSelected('+id+')">\n' +
-            '   <span class="badge bg-green" style="display: '+printRandomDisplay()+'">!</span>\n' +
+            '   <span class="badge bg-green" style="display: '+printDisplay(comments)+'">!</span>\n' +
             '   <i class="fa fa-eye"></i>\n' +
             ' </a>' +
             '';
@@ -849,7 +784,7 @@
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
-                    '<td style="text-align: center;">'+printComments(data.id)+'</td>\n' +
+                    '<td style="text-align: center;">'+printComments(data.id, data.comments)+'</td>\n' +
                     '</tr>');
 
                 i++;
@@ -868,7 +803,7 @@
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
-                    '<td style="text-align: center;">'+printComments(data.id)+'</td>\n' +
+                    '<td style="text-align: center;">'+printComments(data.id, data.comments)+'</td>\n' +
                     '</tr>');
 
                 i++;
@@ -937,32 +872,11 @@
             },
             success: function(response){
               if ($.parseJSON(response).length > 0){
-                console.log($.parseJSON(response));
+                //console.log($.parseJSON(response));
                 data = $.parseJSON(response).filter(d => d.approved === 'true');
                 data2 = $.parseJSON(response).filter(d => d.approved !== 'true');
-                fillData(data);
 
-                if (firsTimeFlag) {
-                  $('#example1').DataTable({
-                              'paging'      : false,
-                              'lengthChange': false,
-                              'searching'   : false,
-                              'ordering'    : false,
-                              'info'        : false,
-                              'autoWidth'   : true
-                          });
-
-                  $('#example2').DataTable({
-                      'paging'      : false,
-                      'lengthChange': false,
-                      'searching'   : false,
-                      'ordering'    : false,
-                      'info'        : false,
-                      'autoWidth'   : true
-                  });
-                  
-                  firsTimeFlag = false;
-                }
+                getComments();
                 
               } else {
                 $('#tableBody').empty();
@@ -976,23 +890,131 @@
         window.location = 'login.html';
     }
 
+    function editCommentForm(idRequeriment, idC, isAnswerF, editAnswerF) {
+      addComment();
+      
+      idComment = idC;
+      editComment = true;
+      isAnswer = isAnswerF;
+      editAnswer = editAnswerF;
+
+      if (isAnswerF && !editAnswerF) {
+        $('#commentFormTitle').text('New Answer')
+
+        $('input[name=flagRadios][value=green]').prop('checked', true);
+        $('#textAreaComment').val('');
+        $('#emailNotyfyComment').val('');
+      } else {
+        let dataToFilter = data.find(d => d.id === idRequeriment.toString());
+        let commentToFilter = dataToFilter.comments.find(d => d.id === idComment.toString());
+        
+        console.log(commentToFilter);
+
+        if (isAnswer) {
+          $('#commentFormTitle').text('Edit Answer')
+
+          $('input[name=flagRadios][value='+commentToFilter.flagAnswer+']').prop('checked', true);
+          $('#textAreaComment').val(commentToFilter.contentAnswer);
+          $('#emailNotyfyComment').val(commentToFilter.emailToNotifyAnswer);
+        } else {
+          $('#commentFormTitle').text('Edit Comment')
+
+          $('input[name=flagRadios][value='+commentToFilter.flagComment+']').prop('checked', true);
+          $('#textAreaComment').val(commentToFilter.contentComment);
+          $('#emailNotyfyComment').val(commentToFilter.emailToNotifyComment);
+        }
+      }
+    }
+
+    function printEditionButtonComment(idRequeriment, idComment, isAnswerF, editAnswerF, usernameAnswer) {
+      if (!isAnswerF && !editAnswerF && dataUser.role === 'ADMIN') {
+        return '<a href="#"><i class="fa fa-edit" onclick="editCommentForm('+idRequeriment+','+idComment+','+isAnswerF+','+editAnswerF+')"></i></a>';
+      }  
+
+      if (isAnswerF && !editAnswerF && usernameAnswer === '') {
+        return '<a href="#" class="pull-right" style="padding-right: 10%;" onclick="editCommentForm('+idRequeriment+','+idComment+','+isAnswerF+','+editAnswerF+')">Add Answer</a>'
+      } 
+
+      if (isAnswerF && editAnswerF && dataUser.role === 'ADMIN') {
+        return '<a href="#"><i class="fa fa-edit" onclick="editCommentForm('+idRequeriment+','+idComment+','+isAnswerF+','+editAnswerF+')"></i></a>';
+      }
+
+      return ''; 
+    }
+
     function changeRequerimentSelected(id) {
+      cancelComment();
+        
+      $('#commentBody').empty();  
+
         idRequerimentSelected = id;
+
+        let dataComments = data.find(x => x.id === idRequerimentSelected.toString());
+        
+        if (dataComments.comments.length > 0) {
+          dataComments.comments.forEach(comment => {
+            $('#commentBody').append(
+            '<div class="direct-chat-msg">'+
+            '<div class="direct-chat-info clearfix">'+
+              '<span class="direct-chat-name pull-left">'+comment.usernameComment+'</span>'+
+              '<span class="direct-chat-timestamp pull-right">'+comment.dateComment+'</span>'+
+            '</div>'+
+            '<div class="col-xs-11">'+
+              '<i class="fa fa-fw fa-flag-o bg-'+comment.flagComment+'" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 3%;"></i>'+
+              '<div class="direct-chat-text">'+
+                ''+comment.contentComment+''+
+              '</div>'+
+            '</div>'+
+            '<div class="col-xs-1" style="padding-top: 2%;">'+
+              //'<a href="#"><i class="fa fa-edit"></i></a>'+
+              ''+printEditionButtonComment(idRequerimentSelected, comment.id, false, false, comment.usernameAnswer)+''+
+            '</div>'+
+
+            //'<a href="#" class="pull-right" style="padding-right: 10%;">Add Answer</a>'+
+            ''+printEditionButtonComment(idRequerimentSelected, comment.id, true, false, comment.usernameAnswer)+''+
+          '</div>'
+          );
+
+          if (comment.usernameAnswer !== '') {
+            $('#commentBody').append(
+              '<div class="direct-chat-msg right" style="display: block">'+
+            '<div class="direct-chat-info clearfix">'+
+              '<span class="direct-chat-name pull-right">'+comment.usernameAnswer+'</span>'+
+              '<span class="direct-chat-timestamp pull-left">'+comment.dateAnswer+'</span>'+
+            '</div>'+
+            '<div class="col-xs-1" style="padding-top: 2%;">'+
+              //'<a href="#"><i class="fa fa-edit"></i></a>'+
+              ''+printEditionButtonComment(idRequerimentSelected, comment.id, true, true, comment.usernameAnswer)+''+
+            '</div>'+
+            '<div class="col-xs-11">'+
+              '<i class="fa fa-fw fa-flag-o bg-'+comment.flagAnswer+' pull-right" style="    border-radius: 50%; float: left; width: 40px; height: 40px; padding-top: 3%;"></i>'+
+              '<div class="direct-chat-text">'+
+                ''+comment.contentAnswer+''+
+              '</div>'+
+            '</div>'+
+          '</div>'
+            );
+          }
+          });
+        }
     }
 
     function addComment() {
-        let editComment = false;
-        let isAnswer = false;
-        let editAnswer = false;
+        editComment = false;
+        isAnswer = false;
+        editAnswer = false;
+
+        $('#commentFormTitle').text('New Comment')
 
         $('#addCommentButton').css('display','none');
+        $('#commentBody').css('display','none');
         $('#addCommentForm').css('display','block');
     }
 
     function cancelComment() {
-        let editComment = false;
-        let isAnswer = false;
-        let editAnswer = false;
+        editComment = false;
+        isAnswer = false;
+        editAnswer = false;
 
         // console.log($('input[name=flagRadios]:checked').val());
         // console.log($('#textAreaComment').val());
@@ -1002,6 +1024,7 @@
         $('#emailNotyfyComment').val('');
 
         $('#addCommentButton').css('display','block');
+        $('#commentBody').css('display','block');
         $('#addCommentForm').css('display','none');
     }
 
@@ -1013,25 +1036,161 @@
     function saveComment() {
         if (editComment) {
             if (isAnswer) {
-                if (editAnswer) {
-                    console.log('edit comment');
-                } else {
-                    console.log('new answer');
-                }
+                //if (editAnswer) {
+                  //  console.log('edit answer');
+                //} else {
+                  //  console.log('new answer');
+                //}
+                  
+                let dataToFilter = data.find(d => d.id === idRequerimentSelected.toString());
+                let commentToFilter = dataToFilter.comments.find(d => d.id === idComment.toString());
+                commentToFilter.usernameAnswer = dataUser.username;
+                commentToFilter.dateAnswer = getFormattedDate();
+                commentToFilter.contentAnswer = $('#textAreaComment').val();
+                commentToFilter.emailToNotifyAnswer = $('#emailNotyfyComment').val();
+                commentToFilter.flagAnswer = $('input[name=flagRadios]:checked').val();
+       
+                console.log(commentToFilter);
+                editCommentAction(commentToFilter);    
             } else {
                 console.log('edit comment');
+
+                let dataToFilter = data.find(d => d.id === idRequerimentSelected.toString());
+                let commentToFilter = dataToFilter.comments.find(d => d.id === idComment.toString());
+                commentToFilter.usernameComment = dataUser.username;
+                commentToFilter.dateComment = getFormattedDate();
+                commentToFilter.contentComment = $('#textAreaComment').val();
+                commentToFilter.emailToNotifyComment = $('#emailNotyfyComment').val();
+                commentToFilter.flagComment = $('input[name=flagRadios]:checked').val();
+       
+                console.log(commentToFilter);
+                editCommentAction(commentToFilter);
             }
         } else {
             console.log('new comment');
-        }
+            const comment = {
+              "usernameComment":dataUser.username,
+              "dateComment":getFormattedDate(),
+              "contentComment":$('#textAreaComment').val(),
+              "emailToNotifyComment":$('#emailNotyfyComment').val(),
+              "flagComment":$('input[name=flagRadios]:checked').val(),
+              "usernameAnswer":'',
+              "dateAnswer":'',
+              "contentAnswer":'',
+              "emailToNotifyAnswer":'',
+              "flagAnswer":'',
+              "idRequeriment":idRequerimentSelected
+            }
 
-        console.log(idRequerimentSelected);
-        console.log($('input[name=flagRadios]:checked').val());
-        console.log($('#textAreaComment').val());
-        console.log($('#emailNotyfyComment').val());
-        console.log(dataUser.username);
-        console.log(getFormattedDate());
-        console.log('COMMENT');
+            console.log(comment);
+            createComment(comment);
+        }
+    }
+
+    function createComment(c){
+      comment = c
+      $.ajax({
+                type: "POST",
+                url: "backend/util.php",
+                data: {
+                    "method" : "createComment",
+                    "usernameComment" : comment.usernameComment,
+                    "dateComment": comment.dateComment,
+                    "contentComment": comment.contentComment,
+                    "emailToNotifyComment": comment.emailToNotifyComment,
+                    "flagComment": comment.flagComment,
+                    "usernameAnswer" : comment.usernameAnswer,
+                    "dateAnswer": comment.dateAnswer,
+                    "contentAnswer": comment.contentAnswer,
+                    "emailToNotifyAnswer": comment.emailToNotifyAnswer,
+                    "flagAnswer": comment.flagAnswer,
+                    "idRequeriment": comment.idRequeriment
+                },
+                success: function(response){
+                    console.log(response);
+                    comment.id = $.parseJSON(response).id;
+                    data.find(d => d.id === idRequerimentSelected.toString()).comments.push(comment)
+                    changeRequerimentSelected(idRequerimentSelected);
+                }
+            });
+    }
+
+    function editCommentAction(c){
+      comment = c
+      $.ajax({
+                type: "POST",
+                url: "backend/util.php",
+                data: {
+                    "method" : "editComment",
+                    "id" : comment.id,
+                    "usernameComment" : comment.usernameComment,
+                    "dateComment": comment.dateComment,
+                    "contentComment": comment.contentComment,
+                    "emailToNotifyComment": comment.emailToNotifyComment,
+                    "flagComment": comment.flagComment,
+                    "usernameAnswer" : comment.usernameAnswer,
+                    "dateAnswer": comment.dateAnswer,
+                    "contentAnswer": comment.contentAnswer,
+                    "emailToNotifyAnswer": comment.emailToNotifyAnswer,
+                    "flagAnswer": comment.flagAnswer,
+                    "idRequeriment": comment.idRequeriment
+                },
+                success: function(response){
+                    console.log(response);
+                    let pos = data.find(d => d.id === idRequerimentSelected.toString()).comments.map(x => x.id).indexOf(idComment.toString())
+                    data.find(d => d.id === idRequerimentSelected.toString()).comments[pos] = comment;
+                    changeRequerimentSelected(idRequerimentSelected);
+                }
+            });
+    }
+
+    function getComments() {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "getComments",
+            },
+            success: function(response){
+//              console.log($.parseJSON(response));
+
+              if ($.parseJSON(response).length > 0){
+                data.forEach(d => {
+                  d.comments = $.parseJSON(response).filter(c => c.idRequeriment === d.id);
+                });
+              } else {
+                data.forEach(d => {
+                  d.comments = [];
+                });
+              }
+
+              console.log(data);
+
+              fillData(data);
+
+              if (firsTimeFlag) {
+                $('#example1').DataTable({
+                            'paging'      : false,
+                            'lengthChange': false,
+                            'searching'   : false,
+                            'ordering'    : false,
+                            'info'        : false,
+                            'autoWidth'   : true
+                        });
+
+                $('#example2').DataTable({
+                    'paging'      : false,
+                    'lengthChange': false,
+                    'searching'   : false,
+                    'ordering'    : false,
+                    'info'        : false,
+                    'autoWidth'   : true
+                });
+                
+                firsTimeFlag = false;
+              }
+            }
+        });
     }
 
     if (window.sessionStorage.getItem('token') !== null) {
