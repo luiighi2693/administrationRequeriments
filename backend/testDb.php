@@ -16,9 +16,9 @@ $mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", 
 }*/
 
  //$query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'greensize2018\',\'ADMIN\')';
-  $query = 'SELECT * FROM requeriments';
+  $query = 'SELECT * FROM comments';
 // $query = 'DELETE FROM users WHERE id= 1';
-    echo $query;
+//    echo $query;
     executeQuery($query);
 
 function executeQuery($query){

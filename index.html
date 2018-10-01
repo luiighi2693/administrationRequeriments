@@ -1088,7 +1088,7 @@
     }
 
     function createComment(c){
-      comment = c
+      comment = c;
       $.ajax({
                 type: "POST",
                 url: "backend/util.php",
@@ -1116,7 +1116,7 @@
     }
 
     function editCommentAction(c){
-      comment = c
+      comment = c;
       $.ajax({
                 type: "POST",
                 url: "backend/util.php",
@@ -1142,6 +1142,20 @@
                     changeRequerimentSelected(idRequerimentSelected);
                 }
             });
+    }
+
+    function deleteComment(id) {
+        $.ajax({
+            type: "POST",
+            url: "backend/util.php",
+            data: {
+                "method" : "deleteComment",
+                "id" :id,
+            },
+            success: function(response){
+                console.log(response);
+            }
+        });
     }
 
     function getComments() {
