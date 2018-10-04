@@ -44,15 +44,18 @@ function getRequeriments(){
 }
 
 function createRequeriment(){
-    $query = 'INSERT INTO requeriments (priority, idRow, team, deadline, feature, description, link, statusRequeriment, approved, orderRequeriment) VALUES ('.
+    $query = 'INSERT INTO requeriments (priority, idRow, team, deadline, feature, description, impact, link, statusRequeriment, colorStatus, swapped, approved, orderRequeriment) VALUES ('.
         $_POST['priority'].', \''.
         $_POST['idRow'].'\', \''.
         $_POST['team'].'\', \''.
         $_POST['deadLine'].'\', \''.
         $_POST['feature'].'\', \''.
         $_POST['description'].'\', \''.
+        $_POST['impact'].'\', \''.
         $_POST['link'].'\', \''.
         $_POST['statusRequeriment'].'\', \''.
+        $_POST['colorStatus'].'\', \''.
+        $_POST['swapped'].'\', \''.
         $_POST['approved'].'\', '.
         $_POST['orderRequeriment'].')';
 
@@ -67,8 +70,11 @@ function editRequeriment(){
                 deadLine=\''.$_POST['deadLine'].'\', 
                 feature=\''.$_POST['feature'].'\', 
                 description=\''.$_POST['description'].'\', 
+                impact=\''.$_POST['impact'].'\', 
                 link=\''.$_POST['link'].'\', 
                 statusRequeriment=\''.$_POST['statusRequeriment'].'\', 
+                colorStatus=\''.$_POST['colorStatus'].'\', 
+                swapped=\''.$_POST['swapped'].'\', 
                 approved=\''.$_POST['approved'].'\', 
                 orderRequeriment=\''.$_POST['orderRequeriment'].'\' 
                 WHERE id='.$_POST['id'];

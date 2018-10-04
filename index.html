@@ -54,7 +54,7 @@
         <div class="col-xs-12">
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title" id="tittleNewEditRequeriment">New Requeriment</h3>
+              <h3 class="box-title" id="tittleNewEditRequeriment">New Requirement</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -65,10 +65,17 @@
                     <label for="priorityInput">Priority</label>
                     <input type="number" class="form-control" id="priorityInput" placeholder="Enter priority">
                   </div>
-                  <div class="form-group">
-                    <label for="teamInput">Team</label>
-                    <input type="text" class="form-control" id="teamInput" placeholder="Enter Team">
-                  </div>
+                 <div class="row">
+                   <div class="form-group col-md-10">
+                     <label for="teamInput">Team</label>
+                     <input type="text" class="form-control" id="teamInput" placeholder="Enter Team">
+                   </div>
+                   <div class="checkbox col-md-2">
+                     <label>
+                       <input id="swapped" type="checkbox"> Swapped
+                     </label>
+                   </div>
+                 </div>
                   <div class="form-group">
                     <label>DeadLine</label>
 
@@ -93,15 +100,55 @@
 
                   <div class="form-group">
                     <label for="statusInput">Status</label>
-                    <select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="statusInput">
-                      <option selected="selected"></option>
-                      <option>In queue</option>
-                      <option>Processing</option>
-                      <option>Completed</option>
-                      <option>Blocked</option>
-                      <option>Awating</option>
-                      <option>Information</option>
-                    </select>
+                    <input type="text" class="form-control" id="statusInput" placeholder="Enter Status">
+                  </div>
+                  <div class="form-group" style="display: flex">
+                    <div class="radio" style="margin-top: 0 !important; margin-right: 2%;">
+                      <label>
+                        <input type="radio" name="colorRadios" id="colorRadiosWhite" value="#ffffff" checked>
+                        <span class="label" style="background-color: #ffffff; color: #0a0a0a;">white</span>
+                      </label>
+                    </div>
+                    <div class="radio" style="margin-top: 0 !important; margin-right: 2%;">
+                      <label>
+                        <input type="radio" name="colorRadios" id="colorRadiosBlue" value="#a1cfea" >
+                        <span class="label" style="background-color: #a1cfea; color: #0a0a0a;">blue</span>
+                      </label>
+                    </div>
+                    <div class="radio" style="margin-top: 0 !important; margin-right: 2%;">
+                      <label>
+                        <input type="radio" name="colorRadios" id="colorRadiosYellow" value="#e2dd3b">
+                        <span class="label" style="background-color: #e2dd3b; color: #0a0a0a;">yellow</span>
+                      </label>
+                    </div>
+                    <div class="radio" style="margin-top: 0 !important; margin-right: 2%;">
+                      <label>
+                        <input type="radio" name="colorRadios" id="colorRadiosOrange" value="#f17913">
+                        <span class="label" style="background-color: #f17913; color: #0a0a0a;">orange</span>
+                      </label>
+                    </div>
+                    <div class="radio" style="margin-top: 0 !important; margin-right: 2%;">
+                      <label>
+                        <input type="radio" name="colorRadios" id="colorRadiosRed" value="#f11313">
+                        <span class="label" style="background-color: #f11313; color: #0a0a0a;">red</span>
+                      </label>
+                    </div>
+                    <div class="radio" style="margin-top: 0 !important; margin-right: 2%;">
+                      <label>
+                        <input type="radio" name="colorRadios" id="colorRadiosGreen" value="#63dea6">
+                        <span class="label" style="background-color: #63dea6; color: #0a0a0a;">green</span>
+                      </label>
+                    </div>
+                    <!--<label for="statusInput">Status</label>-->
+                    <!--<select class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true" id="statusInput">-->
+                      <!--<option selected="selected"></option>-->
+                      <!--<option>In queue</option>-->
+                      <!--<option>Processing</option>-->
+                      <!--<option>Completed</option>-->
+                      <!--<option>Blocked</option>-->
+                      <!--<option>Awating</option>-->
+                      <!--<option>Information</option>-->
+                    <!--</select>-->
                   </div>
 
                 </div>
@@ -111,7 +158,7 @@
                     <input type="text" class="form-control" id="idInput" placeholder="Enter id">
                   </div>
                   <div class="form-group">
-                    <label for="RequerimentInput">Feature / Requeriment</label>
+                    <label for="RequerimentInput">Feature / Requirement</label>
                     <input type="text" class="form-control" id="requerimentInput" placeholder="Enter Feature / Requeriment">
                   </div>
                   <div class="form-group">
@@ -119,9 +166,13 @@
                     <textarea class="form-control" rows="5" id="descriptionInput" placeholder="Enter ..."></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="teamInput">Notify To Email</label>
-                    <input type="email" class="form-control" id="emailToNotify" placeholder="Enter a Email">
+                    <label>Impact</label>
+                    <textarea class="form-control" rows="5" id="impactInput" placeholder="Enter ..."></textarea>
                   </div>
+                  <!--<div class="form-group">-->
+                    <!--<label for="teamInput">Notify To Email</label>-->
+                    <!--<input type="email" class="form-control" id="emailToNotify" placeholder="Enter a Email">-->
+                  <!--</div>-->
                 </div>
               </div>
 
@@ -138,7 +189,7 @@
     <section class="content-header">
       <h1>
         Post v2 Roadmap
-        <button id="newSectionButton" type="button" class="btn btn-block btn-primary pull-right" style="width: 10%;" onclick="showNewSection()">New Requeriment</button>
+        <button id="newSectionButton" type="button" class="btn btn-block btn-primary pull-right" style="width: 10%;" onclick="showNewSection()">Add Requirement</button>
       </h1>
     </section>
 
@@ -150,17 +201,18 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th id="actionRowApprovedRequeriments">Actions</th>
                   <th>#</th>
+                  <th id="actionRowApprovedRequeriments">Actions</th>
                   <th>Priority</th>
                   <th>Id</th>
                   <th>Team</th>
                   <th>Deadline</th>
                   <th>Feature / Requeriment</th>
                   <th>Description</th>
+                  <th>Impact</th>
                   <th>Link</th>
                   <th>Status</th>
-                  <th>Observations</th>
+                  <th>Notes</th>
                 </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -190,19 +242,60 @@
               <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th id="actionRowNotApprovedRequeriments">Actions</th>
                   <th>#</th>
+                  <th id="actionRowNotApprovedRequeriments">Actions</th>
                   <th>Priority</th>
                   <th>Id</th>
                   <th>Team</th>
                   <th>Deadline</th>
                   <th>Feature / Requeriment</th>
                   <th>Description</th>
+                  <th>Impact</th>
                   <th>Link</th>
                   <th>Status</th>
                 </tr>
                 </thead>
                 <tbody id="tableBody2">
+                </tbody>
+              </table>
+            </div>
+            <div class="overlay" style="display: none;">
+              <i class="fa fa-refresh fa-spin"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="content-header">
+      <h1>
+        Swapped
+      </h1>
+    </section>
+
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-body">
+              <table id="example3" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>#</th>
+                  <th id="actionRowRequerimentsSwapped">Actions</th>
+                  <th>Priority</th>
+                  <th>Id</th>
+                  <th>Team</th>
+                  <th>Deadline</th>
+                  <th>Feature / Requeriment</th>
+                  <th>Description</th>
+                  <th>Impact</th>
+                  <th>Link</th>
+                  <th>Status</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody3">
                 </tbody>
               </table>
             </div>
@@ -288,6 +381,9 @@
             <div class="box-body">
               <h4 id="commentFormTitle">New Comment</h4>
 
+              <div class="form-group">
+                <input type="text" class="form-control" id="emailNotyfyComment" placeholder="Name">
+              </div>
               <div class="row">
                 <div class="col-xs-1">
                   <div class="radio" style="margin-top: 0;">
@@ -314,9 +410,6 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <input type="email" class="form-control" id="emailNotyfyComment" placeholder="Email to Notify">
-              </div>
             </div>
             <!-- /.box-body -->
             <div class="box-footer">
@@ -350,6 +443,7 @@
     let idToEdit = '';
     let data = [];
     let data2 = [];
+    let data3 = [];
     let dataToEdit = {};
     let dataUser = {};
     let firsTimeFlag = true;
@@ -358,21 +452,22 @@
     let editComment = false;
     let isAnswer = false;
     let editAnswer = false;
+    let isSwapped = false;
+    let hasComment = true;
 
     let comment = {};
     let idComment = '';
 
-    function printBackgroundColor(status) {
-        if (status === 'Processing')
-          return 'style="background-color: #f39c12;"';
-
-        if (status === 'Blocked')
-          return 'style="background-color: #dd4b39;"';
-
-        if (status === 'Completed')
-          return 'style="background-color: #63dea6;"';
-
-        return 'style="background-color: #f9f9f9;"';
+    function printBackgroundColor(statusColor) {
+        // if (status === 'Processing')
+        //   return 'style="background-color: #f39c12;"';
+        //
+        // if (status === 'Blocked')
+        //   return 'style="background-color: #dd4b39;"';
+        //
+        // if (status === 'Completed')
+        //   return 'style="background-color: #63dea6;"';
+        return 'style="background-color: '+statusColor+';"';
     }
 
     function saveUrl() {
@@ -389,13 +484,16 @@
         $('#deadLineInput').val('');
         $('#requerimentInput').val('');
         $('#statusInput').val('');
+        $('input[name=colorRadios][value="#ffffff"]').prop('checked', true);
         $('#descriptionInput').val('');
+        $('#impactInput').val('');
+        $('#swapped').prop("checked", false)
     }
 
     function showNewSection() {
         $('#newSection').css('display','block' );
         $('#newSectionButton').css('display','none' );
-        $('#tittleNewEditRequeriment').text('New Requeriment'); 
+        $('#tittleNewEditRequeriment').text('New Requirement');
 
         cleanFields();
     }
@@ -431,8 +529,11 @@
                 "deadLine": $('#deadLineInput').val(),
                 "feature": $('#requerimentInput').val(),
                 "description": $('#descriptionInput').val(),
+                "impact": $('#impactInput').val(),
                 "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
                 "statusRequeriment": $('#statusInput').val(),
+                "colorStatus": $('input[name=colorRadios]:checked').val(),
+                "swapped": $('#swapped').is(":checked").toString(),
                 "approved": 'false',
                 "orderRequeriment": '1'
             },
@@ -457,8 +558,11 @@
                 "deadLine": $('#deadLineInput').val(),
                 "feature": $('#requerimentInput').val(),
                 "description": $('#descriptionInput').val(),
+                "impact": $('#impactInput').val(),
                 "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
                 "statusRequeriment": $('#statusInput').val(),
+                "colorStatus": $('input[name=colorRadios]:checked').val(),
+                "swapped": $('#swapped').is(":checked").toString(),
                 "approved": dataToEdit.approved,
                 "orderRequeriment": dataToEdit.orderRequeriment
             },
@@ -487,6 +591,8 @@
                 "description": dataToEdit.description,
                 "link": dataToEdit.link,
                 "statusRequeriment": dataToEdit.statusRequeriment,
+                "colorStatus": dataToEdit.colorStatus,
+                "swapped": dataToEdit.swapped,
                 "approved": dataToEdit.approved,
                 "orderRequeriment": data.filter(d => d.priority === dataToEdit.priority).length + 1
             },
@@ -515,6 +621,7 @@
                 "description": dataToEdit.description,
                 "link": dataToEdit.link,
                 "statusRequeriment": dataToEdit.statusRequeriment,
+                "swapped": dataToEdit.swapped,
                 "approved": dataToEdit.approved,
                 "orderRequeriment": dataToEdit.orderRequeriment
             },
@@ -594,6 +701,7 @@
                     "description": d.description,
                     "link": d.link,
                     "statusRequeriment": d.statusRequeriment,
+                    "swapped": d.swapped,
                     "approved": d.approved,
                     "orderRequeriment": d.orderRequeriment
                 },
@@ -620,8 +728,37 @@
         $('#deadLineInput').val(d1.deadLine);
         $('#requerimentInput').val(d1.feature);
         $('#statusInput').val(d1.statusRequeriment);
+        $('input[name=colorRadios][value="'+d1.colorStatus+'"]').prop('checked', true);
+        $('#swapped').prop("checked", d1.swapped === 'true');
 
         $('#descriptionInput').val(d1.description.replace("<br/>", "<br/>\n"));
+        $('#impactInput').val(d1.impact.replace("<br/>", "<br/>\n"));
+        dataToEdit = d1;
+
+        $('#tittleNewEditRequeriment').text('Edit Requeriment');
+    }
+
+    function onEditSwapped(id) {
+
+        idToEdit = id;
+
+        let d1 = data3.filter(d => d.id === id.toString())[0];
+        console.log(d1);
+        showNewSection();
+        $('#titleLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
+        $('#urlLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].href);
+        $('#linkText').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
+        $('#priorityInput').val(d1.priority);
+        $('#teamInput').val(d1.team);
+        $('#idInput').val(d1.idRow);
+        $('#deadLineInput').val(d1.deadLine);
+        $('#requerimentInput').val(d1.feature);
+        $('#statusInput').val(d1.statusRequeriment);
+        $('input[name=colorRadios][value="'+d1.colorStatus+'"]').prop('checked', true);
+        $('#swapped').prop("checked", d1.swapped === 'true');
+
+        $('#descriptionInput').val(d1.description.replace("<br/>", "<br/>\n"));
+        $('#impactInput').val(d1.impact.replace("<br/>", "<br/>\n"));
         dataToEdit = d1;
 
         $('#tittleNewEditRequeriment').text('Edit Requeriment');
@@ -638,8 +775,16 @@
             success: function(response){
                 console.log(response);
 
-                let d1 = data.filter(d => d.id === idToDelete.toString());
-                let dataToOrder = data.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
+                let d1 = null;
+                let dataToOrder = null;
+                if (!isSwapped) {
+                    d1 = data.filter(d => d.id === idToDelete.toString());
+                    dataToOrder = data.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
+                } else {
+                    d1 = data3.filter(d => d.id === idToDelete.toString());
+                    dataToOrder = data3.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
+                }
+
                 dataToOrder.forEach(dToOrder => {
                     if (dToOrder.orderRequeriment > d1[0].orderRequeriment){
                         dToOrder.orderRequeriment = dToOrder.orderRequeriment - 1;
@@ -654,6 +799,12 @@
     }
 
     function setIdToDelete(id) {
+        isSwapped = false;
+        idToDelete = id;
+    }
+
+    function setIdToDeleteSwapped(id) {
+        isSwapped = true;
         idToDelete = id;
     }
 
@@ -727,9 +878,22 @@
             '';
     }
 
+    function printActionsSwapped(id) {
+        return '' +
+            '<a href="#" onclick="onEditSwapped('+id+')"><i class="fa fa-edit"></i></a> ' +
+            '<a href="#" data-toggle="modal" data-target="#modal-delete" onclick="setIdToDeleteSwapped('+id+')"><i class="fa fa-trash"></i></span></a>' +
+            '';
+    }
+
     function printActionEdit(id) {
         return '' +
             '<a href="#" onclick="onEdit('+id+')"><i class="fa fa-edit"></i></a> ' +
+            '';
+    }
+
+    function printActionEditSwapped(id) {
+        return '' +
+            '<a href="#" onclick="onEditSwapped('+id+')"><i class="fa fa-edit"></i></a> ' +
             '';
     }
 
@@ -746,10 +910,18 @@
     function printComments(id, comments) {
         return '' +
             '<a class="btn btn-app btn-app-custom" data-toggle="modal" data-target="#modal-comments" onclick="changeRequerimentSelected('+id+')">\n' +
-            '   <span class="badge bg-green" style="display: '+printDisplay(comments)+'">!</span>\n' +
+            '   <span class="badge bg-'+printColorCommentBag(comments)+'" style="display: '+printDisplay(comments)+'">'+comments.length+'</span>\n' +
             '   <i class="fa fa-eye"></i>\n' +
             ' </a>' +
             '';
+    }
+
+    function printColorCommentBag(comments) {
+        if (comments.length === 0) {
+            return 'green';
+        } else {
+            return comments[comments.length-1].flagAnswer === '' ? comments[comments.length-1].flagComment : comments[comments.length-1].flagAnswer;
+        }
     }
 
     function fillData(data) {
@@ -773,15 +945,16 @@
         if (dataUser.role === 'ADMIN') {
             data.forEach(data => {
                 $('#tableBody').append('' +
-                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
-                    '<td style="text-align: center;">'+printActions(data.id)+'</td>\n' +
+                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
                     '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+printActions(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
                     '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '<td style="text-align: center;">'+printComments(data.id, data.comments)+'</td>\n' +
@@ -792,15 +965,16 @@
         } else {
             data.forEach(data => {
                 $('#tableBody').append('' +
-                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
-                    '<td style="text-align: center;">'+printActionEdit(data.id)+'</td>\n' +
+                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
                     '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+printActionEdit(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
                     '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '<td style="text-align: center;">'+printComments(data.id, data.comments)+'</td>\n' +
@@ -828,15 +1002,16 @@
         if (dataUser.role === 'ADMIN') {
             data2.forEach(data => {
                 $('#tableBody2').append('' +
-                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
-                    '<td style="text-align: center;">'+printActionApproved(data.id)+'</td>\n' +
+                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
                     '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+printActionApproved(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
                     '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '</tr>');
@@ -846,7 +1021,7 @@
         } else {
             data2.forEach(data => {
                 $('#tableBody2').append('' +
-                    '<tr '+printBackgroundColor(data.statusRequeriment)+'>\n' +
+                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
                     '<td style="text-align: center;">'+i+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
@@ -854,6 +1029,64 @@
                     '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.impact+'</td>\n' +
+                    '<td>'+data.link+'</td>\n' +
+                    '<td>'+data.statusRequeriment+'</td>\n' +
+                    '</tr>');
+
+                i++;
+            });
+        }
+
+
+
+        dataTmp = [];
+
+        Array.from(data3, x => x.priority).reduce((x, y) => x.includes(y) ? x : [...x, y], []).forEach(priority => {
+            dAux = data3.filter(d => d.priority === priority);
+            dAux.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+            dAux.forEach(a => {
+                dataTmp.push(a);
+            });
+        });
+
+        data3 = dataTmp;
+
+        $('#tableBody3').empty();
+        i = 1;
+
+        if (dataUser.role === 'ADMIN') {
+            data3.forEach(data => {
+                $('#tableBody3').append('' +
+                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
+                    '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+printActionsSwapped(data.id)+'</td>\n' +
+                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
+                    '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+data.feature+'</td>\n' +
+                    '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.impact+'</td>\n' +
+                    '<td>'+data.link+'</td>\n' +
+                    '<td>'+data.statusRequeriment+'</td>\n' +
+                    '</tr>');
+
+                i++;
+            });
+        } else {
+            data3.forEach(data => {
+                $('#tableBody3').append('' +
+                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
+                    '<td style="text-align: center;">'+i+'</td>\n' +
+                    '<td style="text-align: center;">'+printActionEditSwapped(data.id)+'</td>\n' +
+                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
+                    '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+data.feature+'</td>\n' +
+                    '<td>'+data.description+'</td>\n' +
+                    '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
                     '</tr>');
@@ -873,8 +1106,9 @@
             success: function(response){
               if ($.parseJSON(response).length > 0){
                 //console.log($.parseJSON(response));
-                data = $.parseJSON(response).filter(d => d.approved === 'true');
+                data = $.parseJSON(response).filter(d => d.approved === 'true' && d.swapped === 'false');
                 data2 = $.parseJSON(response).filter(d => d.approved !== 'true');
+                data3 = $.parseJSON(response).filter(d => d.approved === 'true' && d.swapped === 'true');
 
                 getComments();
                 
@@ -899,7 +1133,7 @@
       editAnswer = editAnswerF;
 
       if (isAnswerF && !editAnswerF) {
-        $('#commentFormTitle').text('New Answer')
+        $('#commentFormTitle').text('New Answer');
 
         $('input[name=flagRadios][value=green]').prop('checked', true);
         $('#textAreaComment').val('');
@@ -952,6 +1186,7 @@
         let dataComments = data.find(x => x.id === idRequerimentSelected.toString());
         
         if (dataComments.comments.length > 0) {
+            hasComment = true;
           dataComments.comments.forEach(comment => {
             $('#commentBody').append(
             '<div class="direct-chat-msg">'+
@@ -996,6 +1231,9 @@
             );
           }
           });
+        } else {
+            hasComment = false;
+            addComment();
         }
     }
 
@@ -1026,6 +1264,11 @@
         $('#addCommentButton').css('display','block');
         $('#commentBody').css('display','block');
         $('#addCommentForm').css('display','none');
+
+        if (!hasComment){
+            hasComment = true;
+            $('#modal-comments').modal('toggle');
+        }
     }
 
     function getFormattedDate() {
@@ -1044,7 +1287,8 @@
                   
                 let dataToFilter = data.find(d => d.id === idRequerimentSelected.toString());
                 let commentToFilter = dataToFilter.comments.find(d => d.id === idComment.toString());
-                commentToFilter.usernameAnswer = dataUser.username;
+                // commentToFilter.usernameAnswer = dataUser.username;
+                commentToFilter.usernameAnswer = $('#emailNotyfyComment').val();
                 commentToFilter.dateAnswer = getFormattedDate();
                 commentToFilter.contentAnswer = $('#textAreaComment').val();
                 commentToFilter.emailToNotifyAnswer = $('#emailNotyfyComment').val();
@@ -1057,7 +1301,8 @@
 
                 let dataToFilter = data.find(d => d.id === idRequerimentSelected.toString());
                 let commentToFilter = dataToFilter.comments.find(d => d.id === idComment.toString());
-                commentToFilter.usernameComment = dataUser.username;
+                // commentToFilter.usernameComment = dataUser.username;
+                commentToFilter.usernameComment = $('#emailNotyfyComment').val();;
                 commentToFilter.dateComment = getFormattedDate();
                 commentToFilter.contentComment = $('#textAreaComment').val();
                 commentToFilter.emailToNotifyComment = $('#emailNotyfyComment').val();
@@ -1069,7 +1314,8 @@
         } else {
             console.log('new comment');
             const comment = {
-              "usernameComment":dataUser.username,
+              // "usernameComment":dataUser.username,
+              "usernameComment":$('#emailNotyfyComment').val(),
               "dateComment":getFormattedDate(),
               "contentComment":$('#textAreaComment').val(),
               "emailToNotifyComment":$('#emailNotyfyComment').val(),
@@ -1080,7 +1326,7 @@
               "emailToNotifyAnswer":'',
               "flagAnswer":'',
               "idRequeriment":idRequerimentSelected
-            }
+            };
 
             console.log(comment);
             createComment(comment);
@@ -1200,6 +1446,15 @@
                     'info'        : false,
                     'autoWidth'   : true
                 });
+
+                $('#example3').DataTable({
+                    'paging'      : false,
+                    'lengthChange': false,
+                    'searching'   : false,
+                    'ordering'    : false,
+                    'info'        : false,
+                    'autoWidth'   : true
+                });
                 
                 firsTimeFlag = false;
               }
@@ -1226,6 +1481,10 @@
         $( "#descriptionInput" ).on( "keydown", function(event) {
             if(event.which === 13)
                 $( "#descriptionInput" ).val($( "#descriptionInput" ).val() + "<br/>");
+        });
+        $( "#impactInput" ).on( "keydown", function(event) {
+            if(event.which === 13)
+                $( "#impactInput" ).val($( "#impactInput" ).val() + "<br/>");
         });
     }else {
         logout();
