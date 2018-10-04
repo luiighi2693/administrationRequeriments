@@ -159,7 +159,7 @@
                   </div>
                   <div class="form-group">
                     <label for="RequerimentInput">Feature / Requirement</label>
-                    <input type="text" class="form-control" id="requerimentInput" placeholder="Enter Feature / Requeriment">
+                    <input type="text" class="form-control" id="requerimentInput" placeholder="Enter Feature / Requirement">
                   </div>
                   <div class="form-group">
                     <label>Description</label>
@@ -207,7 +207,7 @@
                   <th>Id</th>
                   <th>Team</th>
                   <th>Deadline</th>
-                  <th>Feature / Requeriment</th>
+                  <th>Feature / Requirement</th>
                   <th>Description</th>
                   <th>Impact</th>
                   <th>Link</th>
@@ -248,7 +248,7 @@
                   <th>Id</th>
                   <th>Team</th>
                   <th>Deadline</th>
-                  <th>Feature / Requeriment</th>
+                  <th>Feature / Requirement</th>
                   <th>Description</th>
                   <th>Impact</th>
                   <th>Link</th>
@@ -288,7 +288,7 @@
                   <th>Id</th>
                   <th>Team</th>
                   <th>Deadline</th>
-                  <th>Feature / Requeriment</th>
+                  <th>Feature / Requirement</th>
                   <th>Description</th>
                   <th>Impact</th>
                   <th>Link</th>
@@ -1121,7 +1121,7 @@
 
     function logout() {
         window.sessionStorage.setItem('token', null);
-        window.location = 'login.html';
+        window.location = dataUser.role === 'ADMIN' ? 'loginAdmin.html' : 'login.html';
     }
 
     function editCommentForm(idRequeriment, idC, isAnswerF, editAnswerF) {
@@ -1162,7 +1162,8 @@
 
     function printEditionButtonComment(idRequeriment, idComment, isAnswerF, editAnswerF, usernameAnswer) {
       if (!isAnswerF && !editAnswerF && dataUser.role === 'ADMIN') {
-        return '<a href="#"><i class="fa fa-edit" onclick="editCommentForm('+idRequeriment+','+idComment+','+isAnswerF+','+editAnswerF+')"></i></a>';
+        return '<a href="#"><i class="fa fa-edit" onclick="editCommentForm('+idRequeriment+','+idComment+','+isAnswerF+','+editAnswerF+')"></i></a>' +
+            '<a href="#"><i class="fa fa-trash" onclick="deleteCommentForm('+idRequeriment+','+idComment+')"></i></a>';
       }  
 
       if (isAnswerF && !editAnswerF && usernameAnswer === '') {
@@ -1355,10 +1356,29 @@
                 success: function(response){
                     console.log(response);
                     comment.id = $.parseJSON(response).id;
-                    data.find(d => d.id === idRequerimentSelected.toString()).comments.push(comment)
+                    data.find(d => d.id === idRequerimentSelected.toString()).comments.push(comment);
+                    hasComment = true;
                     changeRequerimentSelected(idRequerimentSelected);
                 }
             });
+    }
+
+    function deleteCommentForm(requirementId, commentId){
+      $.ajax({
+                type: "POST",
+                url: "backend/util.php",
+                data: {
+                    "method" : "deleteComment",
+                    "id" : commentId
+                },
+                success: function(response){
+                    console.log(response);
+                }
+            });
+
+        let dataComments = data.find(x => x.id === requirementId.toString());
+        data.find(x => x.id === requirementId.toString()).comments.splice(dataComments.comments.map(x => x.id).indexOf(commentId.toString()), 1);
+        changeRequerimentSelected(requirementId);
     }
 
     function editCommentAction(c){
@@ -1389,20 +1409,20 @@
                 }
             });
     }
-
-    function deleteComment(id) {
-        $.ajax({
-            type: "POST",
-            url: "backend/util.php",
-            data: {
-                "method" : "deleteComment",
-                "id" :id,
-            },
-            success: function(response){
-                console.log(response);
-            }
-        });
-    }
+    //
+    // function deleteComment(id) {
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "backend/util.php",
+    //         data: {
+    //             "method" : "deleteComment",
+    //             "id" :id,
+    //         },
+    //         success: function(response){
+    //             console.log(response);
+    //         }
+    //     });
+    // }
 
     function getComments() {
         $.ajax({
@@ -1469,7 +1489,7 @@
         $('#role').text(dataUser.role + ':  ');
 
         if (dataUser.role !== 'ADMIN') {
-            $('#actionRowNotApprovedRequeriments').css('display', 'none');
+            $('#actionRowNotApprovedRequeriments').remove();
         }
 
         $('#deadLineInput').datepicker({
