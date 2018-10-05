@@ -65,17 +65,18 @@
                     <label for="priorityInput">Priority</label>
                     <input type="number" class="form-control" id="priorityInput" placeholder="Enter priority">
                   </div>
-                 <div class="row">
-                   <div class="form-group col-md-10">
+                 <!--<div class="row">-->
+                   <!--<div class="form-group col-md-10">-->
+                   <div class="form-group">
                      <label for="teamInput">Team</label>
                      <input type="text" class="form-control" id="teamInput" placeholder="Enter Team">
                    </div>
-                   <div class="checkbox col-md-2">
-                     <label>
-                       <input id="swapped" type="checkbox"> Swapped
-                     </label>
-                   </div>
-                 </div>
+                   <!--<div class="checkbox col-md-2">-->
+                     <!--<label>-->
+                       <!--<input id="swapped" type="checkbox"> Swapped-->
+                     <!--</label>-->
+                   <!--</div>-->
+                 <!--</div>-->
                   <div class="form-group">
                     <label>DeadLine</label>
 
@@ -268,44 +269,44 @@
     </section>
 
 
-    <section class="content-header">
-      <h1>
-        Swapped
-      </h1>
-    </section>
+    <!--<section class="content-header">-->
+      <!--<h1>-->
+        <!--Swapped-->
+      <!--</h1>-->
+    <!--</section>-->
 
-    <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-body">
-              <table id="example3" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>#</th>
-                  <th id="actionRowRequerimentsSwapped">Actions</th>
-                  <th>Priority</th>
-                  <th>Id</th>
-                  <th>Team</th>
-                  <th>Deadline</th>
-                  <th>Feature / Requirement</th>
-                  <th>Description</th>
-                  <th>Impact</th>
-                  <th>Link</th>
-                  <th>Status</th>
-                </tr>
-                </thead>
-                <tbody id="tableBody3">
-                </tbody>
-              </table>
-            </div>
-            <div class="overlay" style="display: none;">
-              <i class="fa fa-refresh fa-spin"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    <!--<section class="content">-->
+      <!--<div class="row">-->
+        <!--<div class="col-xs-12">-->
+          <!--<div class="box">-->
+            <!--<div class="box-body">-->
+              <!--<table id="example3" class="table table-bordered table-striped">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                  <!--<th>#</th>-->
+                  <!--<th id="actionRowRequerimentsSwapped">Actions</th>-->
+                  <!--<th>Priority</th>-->
+                  <!--<th>Id</th>-->
+                  <!--<th>Team</th>-->
+                  <!--<th>Deadline</th>-->
+                  <!--<th>Feature / Requirement</th>-->
+                  <!--<th>Description</th>-->
+                  <!--<th>Impact</th>-->
+                  <!--<th>Link</th>-->
+                  <!--<th>Status</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody id="tableBody3">-->
+                <!--</tbody>-->
+              <!--</table>-->
+            <!--</div>-->
+            <!--<div class="overlay" style="display: none;">-->
+              <!--<i class="fa fa-refresh fa-spin"></i>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</section>-->
   </div>
   <div class="control-sidebar-bg"></div>
 </div>
@@ -487,7 +488,7 @@
         $('input[name=colorRadios][value="#ffffff"]').prop('checked', true);
         $('#descriptionInput').val('');
         $('#impactInput').val('');
-        $('#swapped').prop("checked", false)
+        // $('#swapped').prop("checked", false)
     }
 
     function showNewSection() {
@@ -533,7 +534,8 @@
                 "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
                 "statusRequeriment": $('#statusInput').val(),
                 "colorStatus": $('input[name=colorRadios]:checked').val(),
-                "swapped": $('#swapped').is(":checked").toString(),
+                // "swapped": $('#swapped').is(":checked").toString(),
+                "swapped": "false",
                 "approved": 'false',
                 "orderRequeriment": '1'
             },
@@ -562,7 +564,8 @@
                 "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
                 "statusRequeriment": $('#statusInput').val(),
                 "colorStatus": $('input[name=colorRadios]:checked').val(),
-                "swapped": $('#swapped').is(":checked").toString(),
+                // "swapped": $('#swapped').is(":checked").toString(),
+                "swapped": "false",
                 "approved": dataToEdit.approved,
                 "orderRequeriment": dataToEdit.orderRequeriment
             },
@@ -592,7 +595,8 @@
                 "link": dataToEdit.link,
                 "statusRequeriment": dataToEdit.statusRequeriment,
                 "colorStatus": dataToEdit.colorStatus,
-                "swapped": dataToEdit.swapped,
+                // "swapped": dataToEdit.swapped,
+                "swapped": "false",
                 "approved": dataToEdit.approved,
                 "orderRequeriment": data.filter(d => d.priority === dataToEdit.priority).length + 1
             },
@@ -621,7 +625,8 @@
                 "description": dataToEdit.description,
                 "link": dataToEdit.link,
                 "statusRequeriment": dataToEdit.statusRequeriment,
-                "swapped": dataToEdit.swapped,
+                // "swapped": dataToEdit.swapped,
+                "swapped": "false",
                 "approved": dataToEdit.approved,
                 "orderRequeriment": dataToEdit.orderRequeriment
             },
@@ -701,7 +706,8 @@
                     "description": d.description,
                     "link": d.link,
                     "statusRequeriment": d.statusRequeriment,
-                    "swapped": d.swapped,
+                    // "swapped": d.swapped,
+                    "swapped": "false",
                     "approved": d.approved,
                     "orderRequeriment": d.orderRequeriment
                 },
@@ -729,7 +735,7 @@
         $('#requerimentInput').val(d1.feature);
         $('#statusInput').val(d1.statusRequeriment);
         $('input[name=colorRadios][value="'+d1.colorStatus+'"]').prop('checked', true);
-        $('#swapped').prop("checked", d1.swapped === 'true');
+        // $('#swapped').prop("checked", d1.swapped === 'true');
 
         $('#descriptionInput').val(d1.description.replace("<br/>", "<br/>\n"));
         $('#impactInput').val(d1.impact.replace("<br/>", "<br/>\n"));
@@ -755,7 +761,7 @@
         $('#requerimentInput').val(d1.feature);
         $('#statusInput').val(d1.statusRequeriment);
         $('input[name=colorRadios][value="'+d1.colorStatus+'"]').prop('checked', true);
-        $('#swapped').prop("checked", d1.swapped === 'true');
+        // $('#swapped').prop("checked", d1.swapped === 'true');
 
         $('#descriptionInput').val(d1.description.replace("<br/>", "<br/>\n"));
         $('#impactInput').val(d1.impact.replace("<br/>", "<br/>\n"));
@@ -777,13 +783,13 @@
 
                 let d1 = null;
                 let dataToOrder = null;
-                if (!isSwapped) {
+                // if (!isSwapped) {
                     d1 = data.filter(d => d.id === idToDelete.toString());
                     dataToOrder = data.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
-                } else {
-                    d1 = data3.filter(d => d.id === idToDelete.toString());
-                    dataToOrder = data3.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
-                }
+                // } else {
+                //     d1 = data3.filter(d => d.id === idToDelete.toString());
+                //     dataToOrder = data3.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
+                // }
 
                 dataToOrder.forEach(dToOrder => {
                     if (dToOrder.orderRequeriment > d1[0].orderRequeriment){
@@ -1040,60 +1046,60 @@
 
 
 
-        dataTmp = [];
-
-        Array.from(data3, x => x.priority).reduce((x, y) => x.includes(y) ? x : [...x, y], []).forEach(priority => {
-            dAux = data3.filter(d => d.priority === priority);
-            dAux.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
-            dAux.forEach(a => {
-                dataTmp.push(a);
-            });
-        });
-
-        data3 = dataTmp;
-
-        $('#tableBody3').empty();
-        i = 1;
-
-        if (dataUser.role === 'ADMIN') {
-            data3.forEach(data => {
-                $('#tableBody3').append('' +
-                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
-                    '<td style="text-align: center;">'+i+'</td>\n' +
-                    '<td style="text-align: center;">'+printActionsSwapped(data.id)+'</td>\n' +
-                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
-                    '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
-                    '<td>'+data.feature+'</td>\n' +
-                    '<td>'+data.description+'</td>\n' +
-                    '<td>'+data.impact+'</td>\n' +
-                    '<td>'+data.link+'</td>\n' +
-                    '<td>'+data.statusRequeriment+'</td>\n' +
-                    '</tr>');
-
-                i++;
-            });
-        } else {
-            data3.forEach(data => {
-                $('#tableBody3').append('' +
-                    '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
-                    '<td style="text-align: center;">'+i+'</td>\n' +
-                    '<td style="text-align: center;">'+printActionEditSwapped(data.id)+'</td>\n' +
-                    '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
-                    '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
-                    '<td>'+data.feature+'</td>\n' +
-                    '<td>'+data.description+'</td>\n' +
-                    '<td>'+data.impact+'</td>\n' +
-                    '<td>'+data.link+'</td>\n' +
-                    '<td>'+data.statusRequeriment+'</td>\n' +
-                    '</tr>');
-
-                i++;
-            });
-        }
+        // dataTmp = [];
+        //
+        // Array.from(data3, x => x.priority).reduce((x, y) => x.includes(y) ? x : [...x, y], []).forEach(priority => {
+        //     dAux = data3.filter(d => d.priority === priority);
+        //     dAux.sort(function(a, b){return a.orderRequeriment-b.orderRequeriment});
+        //     dAux.forEach(a => {
+        //         dataTmp.push(a);
+        //     });
+        // });
+        //
+        // data3 = dataTmp;
+        //
+        // $('#tableBody3').empty();
+        // i = 1;
+        //
+        // if (dataUser.role === 'ADMIN') {
+        //     data3.forEach(data => {
+        //         $('#tableBody3').append('' +
+        //             '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
+        //             '<td style="text-align: center;">'+i+'</td>\n' +
+        //             '<td style="text-align: center;">'+printActionsSwapped(data.id)+'</td>\n' +
+        //             '<td style="text-align: center;">'+data.priority+'</td>\n' +
+        //             '<td>'+data.idRow+'</td>\n' +
+        //             '<td>'+data.team+'</td>\n' +
+        //             '<td>'+data.deadLine+'</td>\n' +
+        //             '<td>'+data.feature+'</td>\n' +
+        //             '<td>'+data.description+'</td>\n' +
+        //             '<td>'+data.impact+'</td>\n' +
+        //             '<td>'+data.link+'</td>\n' +
+        //             '<td>'+data.statusRequeriment+'</td>\n' +
+        //             '</tr>');
+        //
+        //         i++;
+        //     });
+        // } else {
+        //     data3.forEach(data => {
+        //         $('#tableBody3').append('' +
+        //             '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
+        //             '<td style="text-align: center;">'+i+'</td>\n' +
+        //             '<td style="text-align: center;">'+printActionEditSwapped(data.id)+'</td>\n' +
+        //             '<td style="text-align: center;">'+data.priority+'</td>\n' +
+        //             '<td>'+data.idRow+'</td>\n' +
+        //             '<td>'+data.team+'</td>\n' +
+        //             '<td>'+data.deadLine+'</td>\n' +
+        //             '<td>'+data.feature+'</td>\n' +
+        //             '<td>'+data.description+'</td>\n' +
+        //             '<td>'+data.impact+'</td>\n' +
+        //             '<td>'+data.link+'</td>\n' +
+        //             '<td>'+data.statusRequeriment+'</td>\n' +
+        //             '</tr>');
+        //
+        //         i++;
+        //     });
+        // }
     }
 
     function getRequeriments() {
@@ -1106,9 +1112,9 @@
             success: function(response){
               if ($.parseJSON(response).length > 0){
                 //console.log($.parseJSON(response));
-                data = $.parseJSON(response).filter(d => d.approved === 'true' && d.swapped === 'false');
+                data = $.parseJSON(response).filter(d => d.approved === 'true');
                 data2 = $.parseJSON(response).filter(d => d.approved !== 'true');
-                data3 = $.parseJSON(response).filter(d => d.approved === 'true' && d.swapped === 'true');
+                // data3 = $.parseJSON(response).filter(d => d.approved === 'true' && d.swapped === 'true');
 
                 getComments();
                 
