@@ -6,7 +6,8 @@ $password = 'greensize2018';
 $connect = mysqli_connect($host_name, $user_name, $password, $database);*/
 
 //$mysqli = new mysqli("innovabitalent.com", "innovabi_reqs", "greensize2018", "innovabi_requeriments");
-$mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", "db754482285");
+//$mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", "db754482285");
+$mysqli = new mysqli("db756342560.db.1and1.com", "dbo756342560", "@Green.12345!", "db756342560");
 
 /*if (mysqli_connect_errno()) {
     die('<p>Failed to connect to MySQL: '.mysqli_connect_error().'</p>');
@@ -15,8 +16,8 @@ $mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", 
     // $query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'123456\',\'ADMIN\')';
 }*/
 
- //$query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'greensize2018\',\'ADMIN\')';
-  $query = 'SELECT * FROM requeriments';
+ $query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'greensize2018\',\'ADMIN\')';
+ // $query = 'SELECT * FROM requeriments';
 //  $query = 'ALTER TABLE requeriments ADD swapped varchar(10) DEFAULT \'false\' NULL';
 // $query = 'DELETE FROM users WHERE id= 1';
     echo $query;
