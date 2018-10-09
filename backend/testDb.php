@@ -17,6 +17,8 @@ $mysqli = new mysqli("db754482285.db.1and1.com", "dbo754482285", "@Green.123!", 
 
  //$query = 'INSERT INTO users (username, psw, role ) VALUES (\'ehurtado\', \'greensize2018\',\'ADMIN\')';
   $query = 'SELECT * FROM requeriments';
+//  $query = 'ALTER TABLE requeriments ADD pointRequeriment varchar(100) NULL;';
+//  $query = 'ALTER TABLE requeriments MODIFY priority varchar(50);';
 //  $query = 'ALTER TABLE requeriments ADD swapped varchar(10) DEFAULT \'false\' NULL';
 // $query = 'DELETE FROM users WHERE id= 1';
     echo $query;

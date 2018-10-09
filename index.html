@@ -21,6 +21,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="skin-blue sidebar-mini sidebar-collapse" style="height: auto; min-height: 100%;">
+
 <div class="wrapper">
   <header class="main-header">
     <nav class="navbar navbar-static-top" style="margin-left: 0;">
@@ -63,7 +64,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="priorityInput">Priority</label>
-                    <input type="number" class="form-control" id="priorityInput" placeholder="Enter priority">
+                    <input type="text" class="form-control" id="priorityInput" placeholder="Enter priority">
                   </div>
                  <div class="row">
                    <div class="form-group col-md-10">
@@ -77,16 +78,21 @@
                    </div>
                  </div>
                   <div class="form-group">
-                    <label>DeadLine</label>
-
-                    <div class="input-group date">
-                      <div class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
-                      </div>
-                      <input type="text" class="form-control" id="deadLineInput">
-                    </div>
+                    <label>Sprint</label>
+                      <input type="text" class="form-control" id="deadLineInput" placeholder="Enter a Sprint">
+                    <!--<div class="input-group date">-->
+                      <!--<div class="input-group-addon">-->
+                        <!--<i class="fa fa-calendar"></i>-->
+                      <!--</div>-->
+                      <!--<input type="text" class="form-control" id="deadLineInput">-->
+                    <!--</div>-->
                     <!-- /.input group -->
                   </div>
+
+                    <div class="form-group">
+                        <label>Points</label>
+                        <input type="text" class="form-control" id="pointInput" placeholder="Enter a Point"  min="0">
+                    </div>
 
                   <div class="form-group">
                     <label>Link</label>
@@ -191,6 +197,17 @@
         Post v2 Roadmap
         <button id="newSectionButton" type="button" class="btn btn-block btn-primary pull-right" style="width: 10%;" onclick="showNewSection()">Add Requirement</button>
       </h1>
+      <div class="col-md-12">
+        <div class="chart-legend clearfix">
+          <i class="fa fa-square" style="color: #a1cfea;"></i> Completed &nbsp;&nbsp;&nbsp;
+          <i class="fa fa-square" style="color: #63dea6;"></i> In-Progress &nbsp;&nbsp;&nbsp;
+          <i class="fa fa-square" style="color: #e2dd3b;"></i> Next Sprint &nbsp;&nbsp;&nbsp;
+          <i class="fa fa-square" style="color: #f17913;"></i> Action Required &nbsp;&nbsp;&nbsp;
+          <i class="fa fa-square" style="color: #f11313;"></i> Blocking Issue &nbsp;&nbsp;&nbsp;
+          <i class="fa fa-square" style="color: #ffffff;"></i> In Queue
+        </div>
+        <br>
+      </div>
     </section>
 
     <section class="content">
@@ -201,22 +218,23 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
-                  <th id="actionRowApprovedRequeriments">Actions</th>
-                  <th>Priority</th>
-                  <th>Id</th>
-                  <th>Team</th>
-                  <th>Deadline</th>
-                  <th>Feature / Requirement</th>
-                  <th>Description</th>
-                  <th>Impact</th>
-                  <th>Link</th>
-                  <th>Status</th>
-                  <th>Notes</th>
+                    <th>#</th>
+                    <th id="actionRowApprovedRequeriments">Actions</th>
+                    <th>Prio</th>
+                    <th>Id</th>
+                    <th>Team</th>
+                    <th>Feature / Requirement</th>
+                    <th>Description</th>
+                    <th>Impact</th>
+                    <th>Link</th>
+                    <th>Status</th>
+                    <th>Sprint</th>
+                    <th>Points</th>
+                    <th>Notes</th>
                 </tr>
                 </thead>
-                <tbody id="tableBody">
-                </tbody>
+                  <tbody id="tableBody">
+                  </tbody>
               </table>
             </div>
             <div class="overlay" style="display: none;">
@@ -242,17 +260,18 @@
               <table id="example2" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
-                  <th id="actionRowNotApprovedRequeriments">Actions</th>
-                  <th>Priority</th>
-                  <th>Id</th>
-                  <th>Team</th>
-                  <th>Deadline</th>
-                  <th>Feature / Requirement</th>
-                  <th>Description</th>
-                  <th>Impact</th>
-                  <th>Link</th>
-                  <th>Status</th>
+                    <th>#</th>
+                    <th id="actionRowNotApprovedRequeriments">Actions</th>
+                    <th>Prio</th>
+                    <th>Id</th>
+                    <th>Team</th>
+                    <th>Feature / Requirement</th>
+                    <th>Description</th>
+                    <th>Impact</th>
+                    <th>Link</th>
+                    <th>Status</th>
+                    <th>Sprint</th>
+                    <th>Points</th>
                 </tr>
                 </thead>
                 <tbody id="tableBody2">
@@ -282,17 +301,18 @@
               <table id="example3" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>#</th>
-                  <th id="actionRowRequerimentsSwapped">Actions</th>
-                  <th>Priority</th>
-                  <th>Id</th>
-                  <th>Team</th>
-                  <th>Deadline</th>
-                  <th>Feature / Requirement</th>
-                  <th>Description</th>
-                  <th>Impact</th>
-                  <th>Link</th>
-                  <th>Status</th>
+                    <th>#</th>
+                    <th id="actionRowRequerimentsSwapped">Actions</th>
+                    <th>Prio</th>
+                    <th>Id</th>
+                    <th>Team</th>
+                    <th>Feature / Requirement</th>
+                    <th>Description</th>
+                    <th>Impact</th>
+                    <th>Link</th>
+                    <th>Status</th>
+                    <th>Sprint</th>
+                    <th>Points</th>
                 </tr>
                 </thead>
                 <tbody id="tableBody3">
@@ -482,6 +502,7 @@
         $('#teamInput').val('');
         $('#idInput').val('');
         $('#deadLineInput').val('');
+        $('#pointInput').val('');
         $('#requerimentInput').val('');
         $('#statusInput').val('');
         $('input[name=colorRadios][value="#ffffff"]').prop('checked', true);
@@ -523,19 +544,20 @@
             url: "backend/util.php",
             data: {
                 "method" : "createRequeriment",
-                "priority": $('#priorityInput').val(),
+                "priority": $('#priorityInput').val().split('.')[0],
                 "idRow": $('#idInput').val(),
                 "team": $('#teamInput').val(),
                 "deadLine": $('#deadLineInput').val(),
+                "pointRequeriment": $('#pointInput').val(),
                 "feature": $('#requerimentInput').val(),
-                "description": $('#descriptionInput').val(),
+                "description": $('#descriptionInput').val().replace("'", "&#39;"),
                 "impact": $('#impactInput').val(),
                 "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
                 "statusRequeriment": $('#statusInput').val(),
                 "colorStatus": $('input[name=colorRadios]:checked').val(),
                 "swapped": $('#swapped').is(":checked").toString(),
                 "approved": 'false',
-                "orderRequeriment": '1'
+                "orderRequeriment": $('#priorityInput').val().split('.')[1]
             },
             success: function(response){
                 console.log(response);
@@ -552,19 +574,20 @@
             data: {
                 "method" : "editRequeriment",
                 "id" : idToEdit,
-                "priority": $('#priorityInput').val(),
+                "priority": $('#priorityInput').val().split('.')[0],
                 "idRow": $('#idInput').val(),
                 "team": $('#teamInput').val(),
                 "deadLine": $('#deadLineInput').val(),
+                "pointRequeriment": $('#pointInput').val(),
                 "feature": $('#requerimentInput').val(),
-                "description": $('#descriptionInput').val(),
+                "description": $('#descriptionInput').val().replace("'", "&#39;"),
                 "impact": $('#impactInput').val(),
                 "link": getCustomLink($('#titleLink').val(), $('#urlLink').val()),
                 "statusRequeriment": $('#statusInput').val(),
                 "colorStatus": $('input[name=colorRadios]:checked').val(),
                 "swapped": $('#swapped').is(":checked").toString(),
                 "approved": dataToEdit.approved,
-                "orderRequeriment": dataToEdit.orderRequeriment
+                "orderRequeriment": $('#priorityInput').val().split('.')[1]
             },
             success: function(response){
                 console.log(response);
@@ -587,8 +610,10 @@
                 "idRow": dataToEdit.idRow,
                 "team": dataToEdit.team,
                 "deadLine": dataToEdit.deadLine,
+                "pointRequeriment": dataToEdit.pointRequeriment,
                 "feature": dataToEdit.feature,
-                "description": dataToEdit.description,
+                "description": dataToEdit.description.replace("'", "&#39;"),
+                "impact": dataToEdit.impact,
                 "link": dataToEdit.link,
                 "statusRequeriment": dataToEdit.statusRequeriment,
                 "colorStatus": dataToEdit.colorStatus,
@@ -617,10 +642,13 @@
                 "idRow": dataToEdit.idRow,
                 "team": dataToEdit.team,
                 "deadLine": dataToEdit.deadLine,
+                "pointRequeriment": dataToEdit.pointRequeriment,
                 "feature": dataToEdit.feature,
-                "description": dataToEdit.description,
+                "description": dataToEdit.description.replace("'", "&#39;"),
+                "impact": dataToEdit.impact,
                 "link": dataToEdit.link,
                 "statusRequeriment": dataToEdit.statusRequeriment,
+                "colorStatus": dataToEdit.colorStatus,
                 "swapped": dataToEdit.swapped,
                 "approved": dataToEdit.approved,
                 "orderRequeriment": dataToEdit.orderRequeriment
@@ -722,16 +750,20 @@
         $('#titleLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
         $('#urlLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].href);
         $('#linkText').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
-        $('#priorityInput').val(d1.priority);
+        $('#priorityInput').val(d1.priority + '.' + d1.orderRequeriment);
         $('#teamInput').val(d1.team);
         $('#idInput').val(d1.idRow);
         $('#deadLineInput').val(d1.deadLine);
+        $('#pointInput').val(d1.pointRequeriment);
         $('#requerimentInput').val(d1.feature);
         $('#statusInput').val(d1.statusRequeriment);
         $('input[name=colorRadios][value="'+d1.colorStatus+'"]').prop('checked', true);
         $('#swapped').prop("checked", d1.swapped === 'true');
 
-        $('#descriptionInput').val(d1.description.replace("<br/>", "<br/>\n"));
+        $('#descriptionInput').val(d1.description
+            .replace("<br/>", "<br/>\n")
+            .replace("&#39;","'")
+        );
         $('#impactInput').val(d1.impact.replace("<br/>", "<br/>\n"));
         dataToEdit = d1;
 
@@ -748,10 +780,11 @@
         $('#titleLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
         $('#urlLink').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].href);
         $('#linkText').val($(d1.link)[0] === undefined ? '' : $(d1.link)[0].text);
-        $('#priorityInput').val(d1.priority);
+        $('#priorityInput').val(d1.priority + '.' + d1.orderRequeriment);
         $('#teamInput').val(d1.team);
         $('#idInput').val(d1.idRow);
         $('#deadLineInput').val(d1.deadLine);
+        $('#pointInput').val(d1.pointRequeriment);
         $('#requerimentInput').val(d1.feature);
         $('#statusInput').val(d1.statusRequeriment);
         $('input[name=colorRadios][value="'+d1.colorStatus+'"]').prop('checked', true);
@@ -775,23 +808,23 @@
             success: function(response){
                 console.log(response);
 
-                let d1 = null;
-                let dataToOrder = null;
-                if (!isSwapped) {
-                    d1 = data.filter(d => d.id === idToDelete.toString());
-                    dataToOrder = data.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
-                } else {
-                    d1 = data3.filter(d => d.id === idToDelete.toString());
-                    dataToOrder = data3.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
-                }
-
-                dataToOrder.forEach(dToOrder => {
-                    if (dToOrder.orderRequeriment > d1[0].orderRequeriment){
-                        dToOrder.orderRequeriment = dToOrder.orderRequeriment - 1;
-                    }
-                });
-
-                editRequerimentCustomWithoutRefreshData(dataToOrder);
+                // let d1 = null;
+                // let dataToOrder = null;
+                // if (!isSwapped) {
+                //     d1 = data.filter(d => d.id === idToDelete.toString());
+                //     dataToOrder = data.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
+                // } else {
+                //     d1 = data3.filter(d => d.id === idToDelete.toString());
+                //     dataToOrder = data3.filter(d => (d.priority === d1[0].priority.toString()) && (d.id !== d1[0].id));
+                // }
+                //
+                // dataToOrder.forEach(dToOrder => {
+                //     if (dToOrder.orderRequeriment > d1[0].orderRequeriment){
+                //         dToOrder.orderRequeriment = dToOrder.orderRequeriment - 1;
+                //     }
+                // });
+                //
+                // editRequerimentCustomWithoutRefreshData(dataToOrder);
 
                 getRequeriments();
             }
@@ -812,52 +845,52 @@
         idToDelete = '';
     }
 
-    function upRequeriment(id) {
-        let d1 = data.filter(d => d.id === id.toString())[0];
-        let d2 = data.filter(d => d.priority === d1.priority);
-        if(d2.indexOf(d1)-1 >= 0)  {
-            //change order in database
-            let d3 = d2[d2.indexOf(d1)-1];
-              //params to send
-            console.log(d1.id, d3.orderRequeriment);
-            console.log(d3.id, d1.orderRequeriment);
+    // function upRequeriment(id) {
+    //     let d1 = data.filter(d => d.id === id.toString())[0];
+    //     let d2 = data.filter(d => d.priority === d1.priority);
+    //     if(d2.indexOf(d1)-1 >= 0)  {
+    //         //change order in database
+    //         let d3 = d2[d2.indexOf(d1)-1];
+    //           //params to send
+    //         console.log(d1.id, d3.orderRequeriment);
+    //         console.log(d3.id, d1.orderRequeriment);
+    //
+    //         //refresh Data
+    //         let tmp = d1.orderRequeriment;
+    //         data.find(d => d.id === d1.id.toString()).orderRequeriment = d3.orderRequeriment;
+    //         data.find(d => d.id === d3.id.toString()).orderRequeriment = tmp;
+    //
+    //         console.log(data);
+    //
+    //         fillData(data);
+    //
+    //         editRequerimentCustomWithoutRefreshData( [data.find(d => d.id === d1.id.toString()), data.find(d => d.id === d3.id.toString())] )
+    //     }
+    //     console.log(id);
+    // }
 
-            //refresh Data
-            let tmp = d1.orderRequeriment;
-            data.find(d => d.id === d1.id.toString()).orderRequeriment = d3.orderRequeriment;
-            data.find(d => d.id === d3.id.toString()).orderRequeriment = tmp;
-
-            console.log(data);
-
-            fillData(data);
-
-            editRequerimentCustomWithoutRefreshData( [data.find(d => d.id === d1.id.toString()), data.find(d => d.id === d3.id.toString())] )
-        }
-        console.log(id);
-    }
-
-    function downRequeriment(id) {
-        let d1 = data.filter(d => d.id === id.toString())[0];
-        let d2 = data.filter(d => d.priority === d1.priority);
-        if(d2.indexOf(d1)+1 < d2.length)  {
-            //change order in database
-            let d3 = d2[d2.indexOf(d1)+1];
-            //params to send
-            console.log(d1.id, d3.orderRequeriment);
-            console.log(d3.id, d1.orderRequeriment);
-
-            //refresh Data
-            let tmp = d1.orderRequeriment;
-            data.find(d => d.id === d1.id.toString()).orderRequeriment = d3.orderRequeriment;
-            data.find(d => d.id === d3.id.toString()).orderRequeriment = tmp;
-
-            console.log(data);
-
-            fillData(data);
-            editRequerimentCustomWithoutRefreshData( [data.find(d => d.id === d1.id.toString()), data.find(d => d.id === d3.id.toString())] )
-        }
-        console.log(id);
-    }
+    // function downRequeriment(id) {
+    //     let d1 = data.filter(d => d.id === id.toString())[0];
+    //     let d2 = data.filter(d => d.priority === d1.priority);
+    //     if(d2.indexOf(d1)+1 < d2.length)  {
+    //         //change order in database
+    //         let d3 = d2[d2.indexOf(d1)+1];
+    //         //params to send
+    //         console.log(d1.id, d3.orderRequeriment);
+    //         console.log(d3.id, d1.orderRequeriment);
+    //
+    //         //refresh Data
+    //         let tmp = d1.orderRequeriment;
+    //         data.find(d => d.id === d1.id.toString()).orderRequeriment = d3.orderRequeriment;
+    //         data.find(d => d.id === d3.id.toString()).orderRequeriment = tmp;
+    //
+    //         console.log(data);
+    //
+    //         fillData(data);
+    //         editRequerimentCustomWithoutRefreshData( [data.find(d => d.id === d1.id.toString()), data.find(d => d.id === d3.id.toString())] )
+    //     }
+    //     console.log(id);
+    // }
 
     function approveRequeriment(id) {
         let d1 = data2.filter(d => d.id === id.toString())[0];
@@ -871,29 +904,29 @@
 
     function printActions(id) {
         return '' +
-            '<a href="#" onclick="upRequeriment('+id+')"><i class="fa fa-arrow-up"></i></span></a> ' +
-            '<a href="#" onclick="downRequeriment('+id+')"><i class="fa fa-arrow-down"></i></span></a> ' +
-            '<a href="#" onclick="onEdit('+id+')"><i class="fa fa-edit"></i></a> ' +
+            // '<a href="#" onclick="upRequeriment('+id+')"><i class="fa fa-arrow-up"></i></span></a> ' +
+            // '<a href="#" onclick="downRequeriment('+id+')"><i class="fa fa-arrow-down"></i></span></a> ' +
+            '<a href="#" onclick="onEdit('+id+')">Edit</a> ' +
             '<a href="#" data-toggle="modal" data-target="#modal-delete" onclick="setIdToDelete('+id+')"><i class="fa fa-trash"></i></span></a>' +
             '';
     }
 
     function printActionsSwapped(id) {
         return '' +
-            '<a href="#" onclick="onEditSwapped('+id+')"><i class="fa fa-edit"></i></a> ' +
+            '<a href="#" onclick="onEditSwapped('+id+')">Edit</a> ' +
             '<a href="#" data-toggle="modal" data-target="#modal-delete" onclick="setIdToDeleteSwapped('+id+')"><i class="fa fa-trash"></i></span></a>' +
             '';
     }
 
     function printActionEdit(id) {
         return '' +
-            '<a href="#" onclick="onEdit('+id+')"><i class="fa fa-edit"></i></a> ' +
+            '<a href="#" onclick="onEdit('+id+')">Edit</a> ' +
             '';
     }
 
     function printActionEditSwapped(id) {
         return '' +
-            '<a href="#" onclick="onEditSwapped('+id+')"><i class="fa fa-edit"></i></a> ' +
+            '<a href="#" onclick="onEditSwapped('+id+')">Edit</a> ' +
             '';
     }
 
@@ -909,10 +942,14 @@
 
     function printComments(id, comments) {
         return '' +
-            '<a class="btn btn-app btn-app-custom" data-toggle="modal" data-target="#modal-comments" onclick="changeRequerimentSelected('+id+')">\n' +
+            '<a href="#" data-toggle="modal" data-target="#modal-comments" onclick="changeRequerimentSelected('+id+')">' +
             '   <span class="badge bg-'+printColorCommentBag(comments)+'" style="display: '+printDisplay(comments)+'">'+comments.length+'</span>\n' +
-            '   <i class="fa fa-eye"></i>\n' +
-            ' </a>' +
+            '   <i class="fa fa-edit"></i>' +
+            '</a> ' +
+            // '<a class="btn btn-app btn-app-custom" data-toggle="modal" data-target="#modal-comments" onclick="changeRequerimentSelected('+id+')">\n' +
+            // '   <span class="badge bg-'+printColorCommentBag(comments)+'" style="display: '+printDisplay(comments)+'">'+comments.length+'</span>\n' +
+            // '   <i class="fa fa-eye"></i>\n' +
+            // ' </a>' +
             '';
     }
 
@@ -922,6 +959,10 @@
         } else {
             return comments[comments.length-1].flagAnswer === '' ? comments[comments.length-1].flagComment : comments[comments.length-1].flagAnswer;
         }
+    }
+
+    function printPoint(point) {
+        return point === null ? '' : point;
     }
 
     function fillData(data) {
@@ -951,12 +992,13 @@
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+printPoint(data.pointRequeriment)+'</td>\n' +
                     '<td style="text-align: center;">'+printComments(data.id, data.comments)+'</td>\n' +
                     '</tr>');
 
@@ -971,12 +1013,13 @@
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+printPoint(data.pointRequeriment)+'</td>\n' +
                     '<td style="text-align: center;">'+printComments(data.id, data.comments)+'</td>\n' +
                     '</tr>');
 
@@ -1008,12 +1051,13 @@
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+printPoint(data.pointRequeriment)+'</td>\n' +
                     '</tr>');
 
                 i++;
@@ -1026,12 +1070,13 @@
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+printPoint(data.pointRequeriment)+'</td>\n' +
                     '</tr>');
 
                 i++;
@@ -1064,12 +1109,13 @@
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+printPoint(data.pointRequeriment)+'</td>\n' +
                     '</tr>');
 
                 i++;
@@ -1083,12 +1129,13 @@
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
                     '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
-                    '<td>'+data.deadLine+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
                     '<td>'+data.link+'</td>\n' +
                     '<td>'+data.statusRequeriment+'</td>\n' +
+                    '<td>'+data.deadLine+'</td>\n' +
+                    '<td>'+printPoint(data.pointRequeriment)+'</td>\n' +
                     '</tr>');
 
                 i++;
@@ -1492,9 +1539,9 @@
             $('#actionRowNotApprovedRequeriments').remove();
         }
 
-        $('#deadLineInput').datepicker({
-            autoclose: true
-        });
+        // $('#deadLineInput').datepicker({
+        //     autoclose: true
+        // });
 
         getRequeriments();
 
