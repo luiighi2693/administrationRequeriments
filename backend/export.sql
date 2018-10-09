@@ -5,6 +5,7 @@ create table requeriments
   idRow             varchar(50)                   null,
   team              varchar(250)                  null,
   deadLine          varchar(50)                   null,
+  pointRequeriment  varchar(100)                  null,
   feature           varchar(500)                  null,
   description       varchar(5000)                 null,
   link              varchar(1500)                 null,

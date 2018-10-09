@@ -45,11 +45,12 @@ function getRequeriments(){
 }
 
 function createRequeriment(){
-    $query = 'INSERT INTO requeriments (priority, idRow, team, deadline, feature, description, impact, link, statusRequeriment, colorStatus, swapped, approved, orderRequeriment) VALUES ('.
+    $query = 'INSERT INTO requeriments (priority, idRow, team, deadline, pointRequeriment, feature, description, impact, link, statusRequeriment, colorStatus, swapped, approved, orderRequeriment) VALUES ('.
         $_POST['priority'].', \''.
         $_POST['idRow'].'\', \''.
         $_POST['team'].'\', \''.
         $_POST['deadLine'].'\', \''.
+        $_POST['pointRequeriment'].'\', \''.
         $_POST['feature'].'\', \''.
         $_POST['description'].'\', \''.
         $_POST['impact'].'\', \''.
@@ -69,6 +70,7 @@ function editRequeriment(){
                 idRow=\''.$_POST['idRow'].'\', 
                 team=\''.$_POST['team'].'\', 
                 deadLine=\''.$_POST['deadLine'].'\', 
+                pointRequeriment=\''.$_POST['pointRequeriment'].'\', 
                 feature=\''.$_POST['feature'].'\', 
                 description=\''.$_POST['description'].'\', 
                 impact=\''.$_POST['impact'].'\', 
@@ -94,7 +96,7 @@ function login(){
 }
 
 function getComments(){
-    $query = 'SELECT * FROM comments';
+    $query = 'SELECT * FROM comments ORDER BY id';
     executeQuery($query);
 }
 
@@ -141,7 +143,7 @@ function editComment(){
 }
 
 function executeQuery($query){
- //   echo $query;
+//    echo $query;
     global $mysqli;
     $result = $mysqli->query($query);
 
