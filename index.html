@@ -911,7 +911,8 @@
         return '' +
             // '<a href="#" onclick="upRequeriment('+id+')"><i class="fa fa-arrow-up"></i></span></a> ' +
             // '<a href="#" onclick="downRequeriment('+id+')"><i class="fa fa-arrow-down"></i></span></a> ' +
-            '<a href="#" onclick="onEdit('+id+')">Edit</a> ' +
+            '<a href="#" onclick="onEdit('+id+')" style="font-size: 18px;">Edit</a> ' +
+            '<br>' +
             '<a href="#" data-toggle="modal" data-target="#modal-delete" onclick="setIdToDelete('+id+')"><i class="fa fa-trash"></i></span></a>' +
             '';
     }
@@ -1503,7 +1504,7 @@
                             'paging'      : false,
                             'lengthChange': false,
                             'searching'   : false,
-                            'ordering'    : false,
+                            'ordering'    : true,
                             'info'        : false,
                             'autoWidth'   : true
                         });
