@@ -62,8 +62,8 @@
             <div role="form">
               <div class="box-body">
                 <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="priorityInput">Priority</label>
+                  <div id="priorityInputBlock" class="form-group">
+                    <label for="priorityInput" style="display: flex;">Priority  <h6 style="padding-left: 8%;margin: 0;margin-top: 1%;">please add a priority number from 0.1 to 3.9</h6></label>
                     <input type="text" class="form-control" id="priorityInput" placeholder="Enter priority">
                   </div>
                  <div class="row">
@@ -166,15 +166,15 @@
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label for="idInput">Id</label>
-                    <input type="text" class="form-control" id="idInput" placeholder="Enter id">
+                    <label for="idInput">Project Type</label>
+                    <input type="text" class="form-control" id="idInput" placeholder="Enter Project Type">
                   </div>
                   <div class="form-group">
-                    <label for="RequerimentInput">Feature / Requirement</label>
-                    <input type="text" class="form-control" id="requerimentInput" placeholder="Enter Feature / Requirement">
+                    <label for="RequerimentInput">Project Tittle</label>
+                    <input type="text" class="form-control" id="requerimentInput" placeholder="Enter Project Tittle">
                   </div>
                   <div class="form-group">
-                    <label>Description</label>
+                    <label>Requirement: title/description</label>
                     <textarea class="form-control" rows="5" id="descriptionInput" placeholder="Enter ..."></textarea>
                   </div>
                   <div class="form-group">
@@ -228,10 +228,10 @@
                     <th>#</th>
                     <th id="actionRowApprovedRequeriments">Actions</th>
                     <th>Prio</th>
-                    <th>Id</th>
                     <th>Team</th>
-                    <th>Feature / Requirement</th>
-                    <th>Description</th>
+                    <th>Project Type</th>
+                    <th>Project Tittle</th>
+                    <th>Requirement: title/description</th>
                     <th>Impact</th>
                     <th>Link</th>
                     <th>Status</th>
@@ -270,10 +270,10 @@
                     <th>#</th>
                     <th id="actionRowNotApprovedRequeriments">Actions</th>
                     <th>Prio</th>
-                    <th>Id</th>
                     <th>Team</th>
-                    <th>Feature / Requirement</th>
-                    <th>Description</th>
+                    <th>Project Type</th>
+                    <th>Project Tittle</th>
+                    <th>Requirement: title/description</th>
                     <th>Impact</th>
                     <th>Link</th>
                     <th>Status</th>
@@ -311,10 +311,10 @@
                     <th>#</th>
                     <th id="actionRowRequerimentsSwapped">Actions</th>
                     <th>Prio</th>
-                    <th>Id</th>
                     <th>Team</th>
-                    <th>Feature / Requirement</th>
-                    <th>Description</th>
+                    <th>Project Type</th>
+                    <th>Project Tittle</th>
+                    <th>Requirement: title/description</th>
                     <th>Impact</th>
                     <th>Link</th>
                     <th>Status</th>
@@ -519,6 +519,7 @@
     }
 
     function showNewSection() {
+        $('#priorityInputBlock').removeClass("has-error");
         $('#newSection').css('display','block' );
         $('#newSectionButton').css('display','none' );
         $('#tittleNewEditRequeriment').text('New Requirement');
@@ -527,6 +528,7 @@
     }
 
     function cancelNewRequeriment() {
+        $('#priorityInputBlock').removeClass("has-error");
         $('#newSection').css('display','none' );
         $('#newSectionButton').css('display','block' );
 
@@ -538,10 +540,16 @@
     }
 
     function onSave() {
-        if (idToEdit !== '') {
-            editRequeriment();
+        //has-error
+        if($('#priorityInput').val().length === 0 || $('#priorityInput').val().split('.')[0] === undefined || $('#priorityInput').val().split('.')[1] === undefined) {
+            $('#priorityInputBlock').addClass("has-error");
         }else{
-            createRequeriment();
+            if (idToEdit !== '') {
+                editRequeriment();
+            }else{
+                createRequeriment();
+            }
+            $('#priorityInputBlock').removeClass("has-error")
         }
     }
 
@@ -941,6 +949,7 @@
     function printActionApproved(id) {
         return '' +
             '<a href="#" onclick="approveRequeriment('+id+')"><i class="fa fa-check"></i></span></a> ' +
+            '<a href="#" data-toggle="modal" data-target="#modal-delete" onclick="setIdToDelete('+id+')">X</span></a>' +
             '';
     }
 
@@ -998,8 +1007,8 @@
                     '<td style="text-align: center;">'+i+'</td>\n' +
                     '<td style="text-align: center;">'+printActions(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
@@ -1019,8 +1028,8 @@
                     '<td style="text-align: center;">'+i+'</td>\n' +
                     '<td style="text-align: center;">'+printActionEdit(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
@@ -1057,8 +1066,8 @@
                     '<td style="text-align: center;">'+i+'</td>\n' +
                     '<td style="text-align: center;">'+printActionApproved(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
@@ -1076,8 +1085,8 @@
                     '<tr '+printBackgroundColor(data.colorStatus)+'>\n' +
                     '<td style="text-align: center;">'+i+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
@@ -1115,8 +1124,8 @@
                     '<td style="text-align: center;">'+i+'</td>\n' +
                     '<td style="text-align: center;">'+printActionsSwapped(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +
@@ -1135,8 +1144,8 @@
                     '<td style="text-align: center;">'+i+'</td>\n' +
                     '<td style="text-align: center;">'+printActionEditSwapped(data.id)+'</td>\n' +
                     '<td style="text-align: center;">'+data.priority+'</td>\n' +
-                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.team+'</td>\n' +
+                    '<td>'+data.idRow+'</td>\n' +
                     '<td>'+data.feature+'</td>\n' +
                     '<td>'+data.description+'</td>\n' +
                     '<td>'+data.impact+'</td>\n' +

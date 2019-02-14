@@ -1,0 +1,115 @@
+id,priority,idRow,team,deadLine,feature,description,link,statusRequeriment,approved,orderRequeriment
+5,0,LOC10,Editorial,09/15/2018,Youth Olympic Games landing page,,Confluence page</a>,Processing,true,1
+6,0,,Editorial,09/15/2018,Add in YOG Cat in Olympic Story,,,Processing,true,2
+7,0,LOC13,Editorial,09/15/2018,Native destinations for Olympic Games replays (Related to YOG landing page),,link to Olympic games page</a>,In queue,true,3
+8,0,,Editorial,,Geo-Localization (part 2),Ability to manage/geoblock OCS Events in forge in order to mirror the relevant geo-restrictions.,Confluence Page</a>,In queue,true,4
+9,0,LOC9,Editorial,,Podcast Audio player,,Confluence link</a>,In queue,true,5
+10,0,,Digital,,Multi-Sports Video Player,,,In queue,true,6
+11,0,SEO,SEO/Editorial David/Iacopo,,Meta description/ meta-title - Videos,"for each image sent by WON, we will send an alt text and and title. It should be used in the image meta data",Confluence Page</a>,In queue,true,7
+12,0,SEO,SEO/Editorial David/Iacopo,,Meta description/ meta-title - News/Stories,"the user should be able to add/edit alt text and image title for any image
+ --to have it as a separate field in Forge and to be able to edit it. 
+",Confluence Page</a>,In queue,true,8
+13,0,CRM5,Editorial,,"Auto-login on OC platform when user comes from CRM e-mails, and use that infomation to give personalize the channel",CRM e-mails can be either to OC contacts but also Rio contacts or PC contacts,Confluence Page</a>,In queue,true,9
+14,0,OPS,,,MOAT Integration,"JN: MOAT is a tool to provide Ad analytics. It requires from some changes, including a a plug-in installation. Further details can be provided through discussions with Moat.",Confluence Page</a>,In queue,true,10
+15,0,,OPS,,Linear Mid rolls,"Support for midroll ad insertion on linear channels. initially the ad insertion will be done server side, however the work may require some integration/configuration changes in JW Player.",Confluence Page</a>,In queue,true,11
+16,0,OPS,,, New ads/interactivity formats during live events,Support for new ways to interact and promote content or ads during lives through the usage of third party platforms. ,Confluence Page</a>,In queue,true,12
+17,0,LOC6,Editorial / SEO,,"Separated text field for SEO, URL and headline","Currently all this is served by the title field (this req. need work on OC side as well) 
+",Confluence Page</a>,In queue,true,13
+18,0,LOC8,Editorial,,Created Youth Olympic Games category,Add the YOG category under Sports,Confluence Page</a>,In queue,true,14
+19,1,LOC1,Editorial,,Geo-Localization (Part 3),"Other modules activated for geo-localization, and not limited only to the homepage.",Confluence Page</a>,In queue,true,15
+109,1,,Editorial,,Hidden Events,"As an editor, I want to be able to provide a third party an “embed code” for a live event or program even when such a live event or program is not publicly listed in anyway in olympicchannel.com live page. The final business goal is that when content gets embedded on an external site, publication times and geo restrictions are kept as defined.",Confluence Page</a>,,false,1
+20,0,LOC3,Editorial,,Embed social post,Add social post inside of the article page and if possible to have it for V2 as CR. this feature will be develop in V2 for Web and post V2 for APP,Confluence Page</a>,In queue,true,16
+21,1,N2,,,Nielsen - More than 1 story visible at first glance on mobile view.,,Confluence Page</a>,In queue,true,1
+22,1,,Swapped,,Article: embedded playlist,,Confluence Page</a>,In queue,true,2
+23,1,,Swapped,,"Videoplayer: DVR Features (FF, RW, Pause) (C 2.48)",,Confluence Page</a>,In queue,true,3
+24,1,,Swapped,,Article: embedded game,,Confluence Page</a>,In queue,true,4
+25,1,,Swapped,,Article: embedded series,,Confluence Page</a>,In queue,true,4
+26,1,,Digital/Tommy,,Olympic Editions - native to OC Platform,,Confluence Page</a>,In queue,true,5
+27,1,,Digital/Tommy,,Calendar,"The purpose of the Calendar/Schedule is to serve as the destination for Olympic Sport fans to find when Olympic sport events happen, and also over time where to watch, results, and watch within the Calendar.",Confluence Page</a>,In queue,true,6
+28,1,,Digital/Tommy,,"Increased Push Notification logic (e.g., event start, event finish, event results)",,Confluence Page</a>,In queue,true,7
+29,1,OPS1,OPS,,Vimond,Events management,Confluence Page</a>,In queue,true,8
+30,1,OPS2,OPS,,Authentication for live events,,Confluence Page</a>,In queue,true,10
+31,1,OPS3,OPS,,Upload Tool for Tenants (Multi-tenancy),"This is the tool that will be used by the editor users on customers/tenants to upload content to MPX for processing, transcoding and publication",Confluence Page</a>,In queue,true,11
+32,1,OPS4,OPS,,New PAM platform integration,IOC is moving PAM to a cloud platform. This change must be considered for review and estimation.,Confluence Page</a>,In queue,true,12
+33,1,,OPS,,Integrate Google 360 SDK for Android devices,,Confluence Page</a>,In queue,true,13
+34,1,ADV1,Commercial,,"Branded Content – (Template, Base Functionality & Infographics)",,Confluence Page</a>,In queue,true,14
+35,1,SEO3,Marketing,,AMP implementation,"OCS acknowledge it is a CR, to be scoped & CR approved",Confluence Page</a>,In queue,true,15
+36,1,LOC10,Editorial,,"Add ""venue"" in events carousels",,Confluence Page</a>,In queue,true,16
+37,1,LOC11,Editorial,,Use month tri-letter instead of number in the header of event pages -> 11 May instead of 11/5,,Confluence Page</a>,In queue,true,17
+38,1,LOC12,Editorial,,Additional bucket extras,Additional buckets extras shown in different modules,Confluence Page</a>,In queue,true,18
+39,1,LOC15,Editorial,,Link from the Originals carousel in the Sports pages directly to the relevant VOD playback page (and not to the show page),,Confluence Page</a>,In queue,true,19
+40,1,LOC16,Editorial,,Add the ‘Replays’ module currently active in the Live page to the Event page as well to display the relevant As-Live VODs,,Confluence Page</a>,In queue,true,20
+41,1,LOC17,Editorial,,Have a clearer overview of VOD active and upcoming schedules and multi licensing management ,,Confluence Page</a>,In queue,true,21
+42,1,LOC19,Editorial,,Localization for India> Hindi language support front-end,"It has been discussed on 26th April with ITMS, Mary and Mark the possibility of doing more things for India, towards Bayog2018 and beyond. The most immediate thing would be to support Hindi as a language",Confluence Page</a>,In queue,true,22
+43,1,LOC4,Editorial,,Add a smarter HP modules logic to avoid duplication (PART 1),"If a piece of content is placed manually, it gets automatically eliminated from the automatic placement across all modules",Confluence Page</a>,In queue,true,23
+44,1,LOC5,Editorial,,Add a smarter HP modules logic to avoid duplication (PART 2),,Confluence Page</a>,In queue,true,24
+45,1,LOC7,,,GDPR,User DATA / Req. to be deleted.User DATA / Req. for copy of data collected ,Confluence Page</a>,In queue,true,25
+46,1,SEO,Marketing,,from marketing Editable slug,"Just like the meta-title, it should be possible to specify the slug manually in WON for each language and have Forge using it for the URL",Confluence Page</a>,In queue,true,26
+47,1,SEO2,Marketing,,Video description to be 500 words with 100 visible + show more option,Need to set up a couple of tests. Idea is to rest a couple of videos with view more arrow. Anything with <150 words would not have a view more arrow,Confluence Page</a>,In queue,true,27
+48,1,,Swapped,,"Dynamic menu creation for athlete, sport and event pages.","OCS-569, OCS-170, OCS-570, OCS-169",Confluence Page</a>,In queue,true,28
+49,1,,Swapped,,"Event page: ""Athletes"" page filters","OCS-396, OCS-397",Confluence Page</a>,In queue,true,29
+50,1,,Swapped,,Sport overview page - Events module: show past events,OCS-373,Confluence Page</a>,In queue,true,30
+51,1,,Swapped,,Event video list page: filter by country,OCS-394,Confluence Page</a>,In queue,true,31
+52,1,,Swapped,,"HP: ""Strip"" module",OCS-447,Confluence Page</a>,In queue,true,32
+53,1,,Swapped,,Athletes overview page: Trending module,OCS-245,Confluence Page</a>,In queue,true,33
+54,1,EMB8,,,Playlist in various languages,Be able to have embed content in many different languages,Confluence Page</a>,In queue,true,34
+55,1,EMB12,,,Playlist creation by stakeholder,"enable a registered stakeholder to build his own playlist, and not just get individual embed codes",Confluence Page</a>,In queue,true,35
+56,1,EMB5,,,Requirements for carrying content,"Requirement for users to carry selected content 
+So for example forcing publishers to only get access if they agree to select a branded content video from the library 
+",Confluence Page</a>,In queue,true,36
+57,1,PAID3,,,integrate Kochava SDK in mobile apps,Have a direct integration of Kochava in both mobile apps,Confluence Page</a>,In queue,true,37
+58,1,CRM10,,,Bi directional sync of favourites,It should be possible to add/update favourites in the CRM,Confluence Page</a>,In queue,true,38
+59,1,,Commercial,,Branded Content – (Additional Functionality & Features),Ability to add more functional flexibility and feaures to the page,Confluence Page</a>,In queue,true,39
+60,1,,Editorial/Digital,,Fordge Integration with iFrames,Place content from Fordge on .org and other similar iFrames,Confluence Page</a>,In queue,true,40
+61,1,,Digital (Tommy),,"""Embeddable player to auto recognize the user and serve the applicable audio file or subtitle""",,Confluence Page</a>,In queue,true,41
+62,1,LOC14,Editorial,,Automatize the ‘Related’ selection via metadata rules,"The RELATED carousel, now present across all VOD pages, is currently manually managed. We would like to setup an automated population of it based on tags. The automatic population could be overwritten by editors in an analog way as Mosaics.",Confluence Page</a>,In queue,true,42
+63,2,,Editorial (Federico),,Related episode/content ,"""As of now, when I am watching a video, all the related episode/content are about the same series. I am not getting any related content to allow me to explore other series and other genres. Basically, if I am watching an episode of Z Team, I am force to stay within the Z Team environment until I get a “one off” content when finally I get some proposals related to other series.
+""",Confluence Page</a>,In queue,true,1
+64,2,LOC18,Scheduling/ Fotis,09/15/2018,Automatize the linking from an EPG to a VOD in the carousel of the Live page (as per editorial requirements),,Confluence Page</a>,In queue,true,1
+65,2,,Content Programming,,LIVE events,"""We should always access the live event’s player with 1 single click.
+
+It seems that this can happen only when the live event is in the carousel of the home page. From all other positions, we are redirect to the event page and from there to the live event. Thus more than one click to get into the player. """,Confluence Page</a>,In queue,true,1
+66,2,,Content Programming,,Titles and text on home page,"""We would like to have the possibility to edit the titles and some descriptions on the home page without changing the titles and short descriptions of the video assets.
+
+This feature is useful to provide a) catchy titles and b) context to the video. Especially when we need to re-use the video asset on several different occasions.""",Confluence Page</a>,In queue,true,1
+67,2,LOC4,Editorial,,Event geo-blocking,Deltatre evaluates the effort to block an entire event pages and all its content. To clarify if the event should not be linked through the site or also the single page (e.g. in case of url sharing) should not visualize the content and showing a courtesy message. This is considered a CR for V3 by D3.,Confluence Page</a>,In queue,true,1
+68,2,,Editorial,,Support rich media infographic,,Confluence Page</a>,In queue,true,1
+69,2,,Editorial,,Amend the upstream republication behaviour based on OCS inputs,,Confluence Page</a>,In queue,true,1
+70,2,,Editorial,,EPG structures/grids in Forge,,Confluence Page</a>,In queue,true,1
+71,2,,Digital,,Rich media infographics (JS embed),,Confluence Page</a>,In queue,true,1
+72,2,B1,Digital,,Bruna Journey - Download app prompt,"Not part of current scope, deltatre are happy to include in v2 upon approval of the CR of 4MDs",Confluence Page</a>,In queue,true,1
+73,2,B2,Digital,,Bruna Journey - Events based on location,Clubfinder - new feature in development by OCS - date tbc,Confluence Page</a>,In queue,true,1
+74,2,B4,Digital,,Bruna Journey - 3rd Party athlete integration – based on likes follow athlete’s Spotify,Spotify playlist - new feature in development by OCS - date tbc,Confluence Page</a>,In queue,true,1
+75,2,B5,Digital,,Bruna Journey - Integration with Salesforce for personalised CRM,,Confluence Page</a>,In queue,true,1
+76,2,,Digital,,Contentwise recommendations for cookie ID users,component that allows forge to re-conciliate recommendations from a cookie ID users instance to the registered user instance,Confluence Page</a>,In queue,true,1
+77,2,CRM6,Marketing,,User subscription tracking and log of origin in CRM,Track the origin of the subscritpion and log in the CRM the origin of the user thanks to the GA campaign tracking data (UTM code),Confluence Page</a>,In queue,true,1
+78,2,CRM7,Marketing,,Mobile App user tracking,Ability to know which users are using the mobile application,Confluence Page</a>,In queue,true,1
+79,2,SEO,Marketing,,Avoid multiple H1,,Confluence Page</a>,In queue,true,1
+80,2,SEO5,Marketing,,"Rel=publisher"" markup","OCS-411 - ""Rel=publisher"" markup requirements To Do OCS-410 - ""Rel=publisher"" markup integration Done",Confluence Page</a>,In queue,true,1
+81,2,,OPS,,MPX credits management,,Confluence Page</a>,In queue,true,1
+82,2,,OPS,,MPX ads management,,Confluence Page</a>,In queue,true,1
+83,2,,OPS,,Track Embedded Content,The goal of this requirement is to trace/track all the sites where a specific content (VOD or live) is embedded or has has been embedded.,Confluence Page</a>,In queue,true,1
+84,2,,OPS,,Migrate MongoDB to Alibaba MogoDB PaaS Service,"Analyze, test and implement the database migration from the current IaaS deployment to Alibaba PaaS MongoDB service.",Confluence Page</a>,In queue,true,1
+85,2,N2,Nielsen ,,Nielsen - Live page add link to the networks that own the rights to broadcast live Olympic games,,Confluence Page</a>,In queue,true,1
+86,2,N4,Nielsen ,,"Nielsen - Possibility to create ""my favourites"" playlist on my account.",,Confluence Page</a>,In queue,true,1
+87,2,N5,Nielsen ,,Nielsen - Prioritize content by athlete inside of the athlete page,,Confluence Page</a>,In queue,true,1
+88,2,N6,Nielsen ,,Nielsen - promote the OCS claim “where Olympics never ends” somehow,"OCS to define, deltatre suggest to create a single page to update with relevant content.",Confluence Page</a>,In queue,true,1
+89,2,N7,Nielsen ,,Nielsen - Add games to the search index,,Confluence Page</a>,In queue,true,1
+90,2,N8,Nielsen ,,Nielsen - Olympic Sport Event Data,,Confluence Page</a>,In queue,true,1
+91,2,ONB1,Native APPs,,Onboarding / Pick your favorite - Icons need reducing,d3 to provide a mockup,Confluence Page</a>,In queue,true,1
+92,2,ONB2,Native APPs,,Onboarding / Pick your favourite - flow update,"Do not allow user to click DONE until they have been through the 3 tabs , Replace DONE → NEXT and push user through the whole journey",Confluence Page</a>,In queue,true,1
+93,2,ONB3,Native APPs,,Onboarding / Pick your favorite - Countries,Instead of alphabetical - the first country to appear in the list should be one where the person is currently located (IP gelocalisation or other),Confluence Page</a>,In queue,true,1
+94,2,ONB4,Native APPs,,Onboarding / Pick your favorite - Athletes,Instead of alphabetical - the algorithm showing Athletes should be based on previous selection: - first show athletes from selected sports and selected country - Medalist should come first (eg. Michael Phelps appears number 6 after scrolling),Confluence Page</a>,In queue,true,1
+95,2,ONB5,Native APPs,,Onboarding / Sign in / Sign up Page,,Confluence Page</a>,In queue,true,1
+96,2,ONB6,Native APPs,,Onboarding / Double opt in,TBC if deltatre should proceed with this change,Confluence Page</a>,In queue,true,1
+97,2,ONB7,Native APPs,,Onboarding / User Flow changes,,Confluence Page</a>,In queue,true,1
+98,2,EMB18,Marketing,,Sign up to know when event starts,"i. Eg. NBC only having access to certain rights or content they contractually have, or an IF only having content related to their sport, or an NOC only from their NOC related",Confluence Page</a>,In queue,true,1
+99,2,,Commercial,,Branded Content – (Bespoke/Customised pages) ,Creation of bespoke pages for brands on an as needed basis. TrailerPark or other agency will be the design lead on these projects. Would like to use DeltaTre as the development service. ,Confluence Page</a>,In queue,true,1
+100,3,,Marketing,,Sign up page AB tests,Ability to optimise the registration process by running A/B tests ,Confluence Page</a>,In queue,true,1
+101,3,PAID2,Marketing,,Tagging of the signup process,"By tagging the various steps of the sign up process (ideally with google analytics events, we can optimize campaignts towards registrations",Confluence Page</a>,In queue,true,1
+102,3,CRM8,Marketing,,Preference center integration,"Ability to for a user to select one or many subscriptions during registration process, and ability to update these subscriptions from the user profile page.",Confluence Page</a>,In queue,true,1
+103,3,CRM9,Marketing,,Capture country in registration process (IP geo-location ?),,Confluence Page</a>,In queue,true,1
+104,3,CRM11,Marketing,,Favourite model for non OC contacts,Build a model that will allow the use of favorites for non OC contacts such as Rio and PC contacts.,Confluence Page</a>,In queue,true,1
+105,3,,OPS,,Teltoo POC,Integration of Teltoo plug-in for peer to peer content delivery.,Confluence Page</a>,In queue,true,1
+106,3,EMB20,Marketing,,Performance optimization,Minimal impact to host site performance – optimisation of embeddable player as much as possible,Confluence Page</a>,In queue,true,1
+107,3,,OPS,,Conviva PoC,Integration of the Conviva plugin and SDK’s for performing the POC we have committed with Conviva to be started on 2018.,Confluence Page</a>,In queue,true,1
